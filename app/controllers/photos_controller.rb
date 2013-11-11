@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all
+    @photos = Photo.all || "photos"
   end
 
   def new
@@ -9,6 +9,16 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.create(params[:photo])
+    redirect_to photos_path
+  end
+
+  def show
+    @photo = Photo.find(params[:id])
+  end
+
+  def destroy
+    Photo.delete(params[:id])
+    redirect_to photos_path
   end
 
 

@@ -1,4 +1,9 @@
+<h1>photos index page</h1>
+<%= link_to "add new photo", new_photo_path%><br>
 <% @photos.each do |photo| %>
-<%= image_tag photo.image_source(:thumb).to_s %>
+<%= image_tag photo.image_source.url(:thumb).to_s %>
+<%= button_to "delete image", { action: "destroy", id: photo.id },
+                              :method => :delete,
+                              data: {confirm: "Are you sure?" } %>
 <% end %>
 
