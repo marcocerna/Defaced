@@ -1,0 +1,16 @@
+Upload a photo:
+
+<%= form_for @photo, :html => {:multipart => true} do |f| %>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :pothole_id %>
+  <p>
+    <%= f.file_field :image_source %>
+  </p>
+  <p>
+    <%= f.label :remote_image_url, "or image URL" %><br />
+    <%= f.text_field :remote_image_url %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+

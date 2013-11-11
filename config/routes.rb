@@ -5,4 +5,6 @@ PotholePatrol::Application.routes.draw do
   match '/auth/failure', to: 'sessions#failure'
 
   get '/logout', to: 'sessions#destroy'
+
+  resources :photos
 end
