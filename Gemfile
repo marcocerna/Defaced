@@ -8,7 +8,6 @@ gem 'rails', '3.2.14'
 gem 'sqlite3'
 gem 'pg'
 gem 'sidekiq'
-gem 'bootstrap-sass-rails'
 gem 'lodash-rails'
 gem 'eco'
 gem 'carrierwave'
@@ -23,6 +22,7 @@ group :development, :test do
   gem 'pry-debugger'
   gem 'better_errors'
   gem 'quiet_assets'
+  gem 'rspec-rails'
 end
 
 
