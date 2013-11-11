@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PotholePatrol</title>
+  <title>Mapstest</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?&sensor=true">
+  </script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div class="container">
 <%= yield %>
-</div>
-
 </body>
 </html>
