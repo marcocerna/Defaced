@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  image_source: MyString
+  pothole_id: 1
+  user_id: 1
+
+two:
+  image_source: MyString
+  pothole_id: 1
+  user_id: 1
