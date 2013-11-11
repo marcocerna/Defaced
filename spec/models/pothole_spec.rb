@@ -10,3 +10,13 @@ describe Pothole do
 
 
 end
+
+# Instructions on how to set up Rspec:
+
+# $ bundle
+# $ bundle exec rake db:migrate
+# $ bundle exec rake db:test:prepare
+
+# To run tests:
+
+# $ bundle exec rspec
