@@ -6,7 +6,7 @@ def index
 end
 
 def create
-  @pothole = Pothole.create(params[:id])
+  @pothole = Pothole.create(params[:pothole])
   redirect_to potholes_path
 end
 
