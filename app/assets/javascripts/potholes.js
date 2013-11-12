@@ -1,110 +1,181 @@
-
-
-    //initialize function to set up default map and map behavior
-
 $(function(){
-      var map;
-      var markers = [];
 
-    function initialize() {
-      var mapOptions = {
-          center: new google.maps.LatLng(37.7833, -122.4167), //set default center to be SF
-          zoom: 13,//set default zoom to show entire extent of SF
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          disableDoubleClickZoom: true, //disabled double click zoom
-      };
+  var map;
+  var markers = [];
 
-      map = new google.maps.Map($("#map-canvas")[0],mapOptions);
+  // Initialize: sets up default map and map behavior
+  function initialize() {
 
-      //click event listener to add new marker on double cick
-      google.maps.event.addListener(map,'dblclick',function(event){
-        potHole(event.latLng);
-      });
-    }
 
-    //set default behavior for markers
-    function potHole(location) {
+    // This variable sets up basic map functionality
+    var mapOptions = {
+        center: new google.maps.LatLng(37.7833, -122.4167), //set default center to be SF
+        zoom: 13,//set default zoom to show entire extent of SF
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDoubleClickZoom: true, //disabled double click zoom
+    };
 
-      var marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        draggable:true,
-        animation: google.maps.Animation.DROP,
-        icon: {
+
+    // Creates map and throws it into a div
+    map = new google.maps.Map($("#map-canvas")[0],mapOptions);
+
+
+    // On double click, creates marker with createPothole function
+    google.maps.event.addListener(map,'dblclick',function(event){
+      createPothole(event.latLng);
+    });
+  }
+
+
+
+  // Everything related to markers goes here
+  function createPothole(location, content) {
+
+    // Part 1
+    // Marker sets up defaults (via a hash)
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
+      icon: {
         path: google.maps.SymbolPath.CIRCLE,
         scale: 5
-        }
-      });
-      //adds newly created markers to marker array
-      markers.push(marker);
-      var markerLocation = {latitude:marker.position.nb, longitude:marker.position.ob}
-      console.log(markerLocation)
-      /// content string is where the css for the info boxes should go
-      //JST["/templates/pothole.jst.ejs"]()
-      var contentString =
-      "<h2>New Pothole</h2>"+"<form id='potholeForm'><input id='name' type='text'name='name'placeholder='name'><br><input type='text' id='description' name='description'placeholder='description'> <input type='hidden' id='latitude' name='latitude' value='"+markerLocation.latitude+"'><input type='hidden' id ='longitude' name='longitude' value='"+markerLocation.longitude+"'><button id='ajax'></button>"
-
-      var infowindow = new google.maps.InfoWindow({
-           content:contentString,
-           maxWidth:300
-      });
-      console.log($('#potholeForm'))
-
-       google.maps.event.addListener(marker, 'click', function(){
-       map.setZoom(18);
-       map.setCenter(marker.getPosition());
-
-          google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-
-          });
-       });
-    }
-
-    function setAllMap(map) {
-      for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
       }
+    });
+
+    // Part 2
+    // Adds newly created markers to marker array (created at top)
+    markers.push(marker);
+    var markerLocation = {latitude:marker.position.ob, longitude:marker.position.pb}
+
+    // Part 3
+    // HTML for info windows
+    var contentString
+
+    // Selects whether to add a form or existing data
+    if (content === undefined) {
+      contentString = "<h2>New Pothole</h2>"+"<form id='potholeForm'><input id='name' type='text'name='name'placeholder='name'><br><input type='text' id='description' name='description'placeholder='description'> <input type='hidden' id='latitude' name='latitude' value='"+markerLocation.latitude+"'><input type='hidden' id ='longitude' name='longitude' value='"+markerLocation.longitude+"'><button id='ajax'></button>"
+    } else {
+      contentString = content;
     }
 
-    function clearMarkers(){
-      setAllMap(null);
+    // Part 4
+    // Creates info window for one marker
+    var infowindow = new google.maps.InfoWindow({
+         content: contentString,
+         maxWidth: 300
+    });
+
+    // What single clicks do
+    google.maps.event.addListener(marker, 'click', function(){
+
+      // On first click, centers and zooms
+      map.setZoom(18);
+      map.setCenter(marker.getPosition());
+
+
+      // On second click, opens info window
+      google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+
+        });
+     });
+
+
+  } // end of potHole()
+
+
+
+
+
+  ////////////////////////////////////////////////////////
+  // These four functions connect to buttons on top bar
+  ////////////////////////////////////////////////////////
+
+  // Main function
+  function setAllMap(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
     }
+  }
 
-    function showMarkers(){
-      setAllMap(map);
-    }
+  // Button #1
+  function clearMarkers(){
+    setAllMap(null);
+  }
 
-    function deleteMarkers(){
-      clearMarkers();
-      markers =[];
-    }
-google.maps.event.addDomListener(window, 'load', initialize);
+  // Button #2
+  function showMarkers(){
+    setAllMap(map);
+  }
 
-$('body').on('click', '#ajax', function(event){
-  event.preventDefault();
-  var $name =$('#name').val();
-  var $description=$('#description').val();
-  var $latitude=$('#latitude').val();
-  var $longitude=$('#longitude').val();
-  var $vote_count= 1
+  // Button #3
+  function deleteMarkers(){
+    clearMarkers();
+    markers =[];
+  }
 
-  var pothole = { pothole:
-          {
-            name: $name,
-            description: $description,
-            latitude: $latitude,
-            longitude: $longitude,
-            vote_count: $vote_count
-          }
-        };
-        console.log(pothole)
-        $.post("/potholes",pothole).done(function(data){
-          alert('hep')
-          console.log(data)
-        })
 
-      })
+  // This lets everything happen only AFTER rest of window loads
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+  // On submit, creates database pothole and (something on map)
+  $('body').on('click', '#ajax', function(event){
+    event.preventDefault();
+    var $name =$('#name').val();
+    var $description=$('#description').val();
+    var $latitude=$('#latitude').val();
+    var $longitude=$('#longitude').val();
+    var $vote_count= 1
+
+    var pothole = {
+      pothole:
+        {
+          name: $name,
+          description: $description,
+          latitude: $latitude,
+          longitude: $longitude,
+          vote_count: $vote_count
+        }
+      };
+    console.log(pothole)
+    $.post("/potholes",pothole).done(function(data){
+      alert('hep')
+      console.log(data)
+      // Something else will get done here
+    })
+  })
+
+
+
+  /////////////////////////////////////////////////////////////////////////////
+
+  // Gathers all database potholes and drops markers for them
+
+  $.get('/potholes.json').done(function(data) {
+    // debugger
+    _.each(data, function(item) {
+
+      // Create marker
+      var itemData = new google.maps.LatLng( parseFloat(item.latitude), parseFloat(item.longitude) )
+
+      // Add pothole content
+      var potholeContent = "<h1>"+item.name+" the Pothole</h1><div>"+item.description+"</div>"
+
+      // Execute
+      createPothole(itemData, potholeContent);
+
+    })
+  })
+
+  /////////////////////////////////////////////////////////////////////////////
+
+
+
 
 })
 
