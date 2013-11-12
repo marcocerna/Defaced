@@ -1,12 +1,12 @@
 class PhotosController < ApplicationController
   def index
     @photos = Photo.all || "photos"
-    # @uploader = Photo.new.image_sources
-    # @uploader.success_action_redirect = new_photo_url
+    @uploader = Photo.new.image_source
+    @uploader.success_action_redirect = new_photo_url
   end
 
   def new
-    @photo = Photo.new#(key: params[:key])
+    @photo = Photo.new(key: params[:key])
   end
 
   def create

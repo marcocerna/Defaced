@@ -8,5 +8,8 @@
 <% end %>
 
 
-
+<%= direct_upload_form_for @uploader do |f| %>
+  <p><%= f.file_field :image_source %></p>
+  <p><%= f.submit "Upload Image" %></p>
+<% end %>
 

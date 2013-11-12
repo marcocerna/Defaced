@@ -4,13 +4,13 @@ Upload a photo:
 
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :pothole_id %>
-
-  <p>File: <%= f.file_field :image_source %>
+  <%= f.hidden_field :key %>
+  <p>File: <%= @photo.image_name %>
   </p>
-  <p>
+<!--   <p>
     <%= f.label :remote_image_url, "or image URL" %><br />
     <%= f.text_field :remote_image_url %>
-  </p>
+  </p> -->
   <p><%= f.submit %></p>
 <% end %>
 
