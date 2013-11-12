@@ -2,6 +2,8 @@ $(function(){
 
   var map;
   var markers = [];
+  var currentLat;
+  var currentLng;
 
   // Initialize: sets up default map and map behavior
   function initialize() {
@@ -33,10 +35,16 @@ $(function(){
 
     // Part 1
     // Marker sets up defaults (via a hash)
+
+    // First make old ones non-draggable
+    var drag = (content === undefined) ? true : false
+
+
+
     var marker = new google.maps.Marker({
       position: location,
       map: map,
-      draggable: true,
+      draggable: drag,
       animation: google.maps.Animation.DROP,
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
@@ -66,6 +74,21 @@ $(function(){
          content: contentString,
          maxWidth: 300
     });
+
+
+
+    // When dragging, updates current variable
+    google.maps.event.addListener(marker, 'dragend', function(){
+      console.log(this.getPosition().lat())
+      currentLat = this.getPosition().lat()
+      currentLng = this.getPosition().lng()
+      console.log(currentLat)
+      debugger
+    })
+
+
+
+
 
     // What single clicks do
     google.maps.event.addListener(marker, 'click', function(){
@@ -126,10 +149,12 @@ $(function(){
   // On submit, creates database pothole and (something on map)
   $('body').on('click', '#ajax', function(event){
     event.preventDefault();
+    console.log(currentLat)
+    debugger
     var $name =$('#name').val();
     var $description=$('#description').val();
-    var $latitude=$('#latitude').val();
-    var $longitude=$('#longitude').val();
+    var $latitude=currentLat
+    var $longitude=currentLng
     var $vote_count= 1
 
     var pothole = {
@@ -174,8 +199,10 @@ $(function(){
 
   /////////////////////////////////////////////////////////////////////////////
 
-
-
+// var currentLat = this.getPosition().lat()
+// var currentLng = this.getPosition().lng()
+// $('#latitude').val(currentLat)
+// $('#longitude').val(currentLng)
 
 })
 
