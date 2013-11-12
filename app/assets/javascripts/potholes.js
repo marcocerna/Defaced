@@ -98,7 +98,6 @@ $(function(){
       currentLat = this.getPosition().lat()
       currentLng = this.getPosition().lng()
       console.log(currentLat)
-      debugger
     })
 
 
@@ -165,8 +164,7 @@ $(function(){
   // On submit, creates database pothole and (something on map)
   $('body').on('click', '#ajax', function(event){
     event.preventDefault();
-    console.log(currentLat)
-    debugger
+
     var $name =$('#name').val();
     var $description=$('#description').val();
     var $latitude=currentLat
@@ -237,7 +235,7 @@ $(function(){
       }
     }
 
-    debugger
+
 
   })
 
