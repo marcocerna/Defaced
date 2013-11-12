@@ -68,6 +68,10 @@ $(function(){
       contentString = content;
     }
 
+    // Sets lat and long so it saves even without dragging
+    currentLat = markerLocation.latitude
+    currentLng = markerLocation.longitude
+
     // Part 4
     // Creates info window for one marker
     var infowindow = new google.maps.InfoWindow({
