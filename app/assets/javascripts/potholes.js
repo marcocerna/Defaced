@@ -93,14 +93,15 @@ $(function(){
     // What single clicks do
     google.maps.event.addListener(marker, 'click', function(){
 
-      // On first click, centers and zooms
-      map.setZoom(18);
+      // On first click, centers and opens information window
       map.setCenter(marker.getPosition());
-
-
-      // On second click, opens info window
-      google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map,marker);
+
+      // On second click, zooms to pothole
+      google.maps.event.addListener(marker, 'click', function() {
+       map.setZoom(16);
+
+
 
         });
      });
