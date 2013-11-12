@@ -10,15 +10,20 @@ gem 'pg'
 gem 'sidekiq'
 gem 'lodash-rails'
 gem 'eco'
-gem 'carrierwave'
-gem 'rmagick'
 gem 'omniauth-facebook', '1.4.0'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'ejs'
 gem 'omniauth-twitter'
 gem 'omniauth'
-
+gem 'fog'
+gem 'unf'
+gem 'carrierwave_direct'
+gem 'carrierwave'  #file uploader
+gem 'rmagick'      #for carrierwave
+gem 'fog'          #ruby cloud service library(cloud resources)
+gem 'unf'
+gem 'carrierwave_direct'
 
 group :development, :test do
   gem 'pry-rails'
@@ -26,8 +31,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,6 +44,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-fileupload-rails'  #file uploader using jquery
 end
 
 gem 'jquery-rails'

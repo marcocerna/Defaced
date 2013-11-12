@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20131112182413) do
     t.string   "remote_image_url"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.boolean  "image_processed"
   end
 
   create_table "potholes", :force => true do |t|

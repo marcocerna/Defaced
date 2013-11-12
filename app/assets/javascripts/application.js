@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree ./templates
+//= require jquery-fileupload/basic
 //= require_tree .
 //= require lodash
 //= require gmaps/google
