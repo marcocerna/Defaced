@@ -15,6 +15,9 @@ gem 'rmagick'
 gem 'omniauth-facebook', '1.4.0'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'ejs'
+gem 'omniauth-twitter'
+gem 'omniauth'
 
 
 group :development, :test do
