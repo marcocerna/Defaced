@@ -63,7 +63,18 @@ $(function(){
 
     // Selects whether to add a form or existing data
     if (content === undefined) {
-      contentString = "<h2>New Pothole</h2>"+"<form id='potholeForm'><input id='name' type='text'name='name'placeholder='name'><br><input type='text' id='description' name='description'placeholder='description'> <input type='hidden' id='latitude' name='latitude' value='"+markerLocation.latitude+"'><input type='hidden' id ='longitude' name='longitude' value='"+markerLocation.longitude+"'><button id='ajax'></button>"
+      contentString = [
+      "<h2>New Pothole</h2>",
+
+      "<form id='potholeForm'>",
+        "<input id='name' type='text'name='name'placeholder='name'><br>",
+        "<input type='text' id='description' name='description'placeholder='description'>",
+        "<input type='hidden' id='latitude' name='latitude' value='"+markerLocation.latitude+"'>",
+        "<input type='hidden' id ='longitude' name='longitude' value='"+markerLocation.longitude+"'>",
+        "<button id='ajax'></button>",
+      "</form>"
+
+      ].join("")
     } else {
       contentString = content;
     }
@@ -194,7 +205,13 @@ $(function(){
       var itemData = new google.maps.LatLng( parseFloat(item.latitude), parseFloat(item.longitude) )
 
       // Add pothole content
-      var potholeContent = "<h1>"+item.name+" the Pothole</h1><div>"+item.description+"</div>"
+      var potholeContent = [
+        "<h1>" + item.name + " the Pothole</h1>",
+        "<div>" + item.description + "</div>",
+        "<button class='upvote vote' id='" + item.id + "'>Upvote!</button>",
+        "<div class='vote_counter' id='" + item.id + "'>1</div>",
+        "<button class='downvote vote' id='" + item.id + "'>Downvote!</button>"
+      ].join("")
 
       // Execute
       createPothole(itemData, potholeContent);
@@ -204,10 +221,26 @@ $(function(){
 
   /////////////////////////////////////////////////////////////////////////////
 
-// var currentLat = this.getPosition().lat()
-// var currentLng = this.getPosition().lng()
-// $('#latitude').val(currentLat)
-// $('#longitude').val(currentLng)
+  // Creates votes
+
+  $('body').on('click', '.vote', function(event) {
+    event.preventDefault()
+
+    var $upvote = (_.contains(this.classList, "upvote")) ? true : false
+    var $pothole_id = this.id
+
+    var vote = {
+      vote: {
+        upvote: $upvote,
+        pothole_id: $pothole_id,
+        user_id: 1
+      }
+    }
+
+    debugger
+
+  })
+
 
 })
 
