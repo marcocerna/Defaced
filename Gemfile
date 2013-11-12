@@ -18,7 +18,9 @@ gem 'geocoder'
 gem 'ejs'
 gem 'omniauth-twitter'
 gem 'omniauth'
-
+gem 'fog'
+gem 'unf'
+gem 'carrierwave_direct'
 
 group :development, :test do
   gem 'pry-rails'
@@ -26,6 +28,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 
 
