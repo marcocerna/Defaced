@@ -15,5 +15,9 @@ def create
   render json: @pothole, status: 201
 end
 
+def destroy
+  @pothole = Pothole.delete(params[:id])
+  render json: @pothole
+end
 
 end

@@ -71,7 +71,7 @@ $(function(){
 
   // This is a big complicated mess
   // Creates pothole marker on map (but doesn't touch the database)
-  function createMarker(location, content) {
+  function createMarker(location, content, potholeID) {
 
 
     // Step 1: Create the marker
@@ -88,7 +88,8 @@ $(function(){
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         scale: 3
-      }
+      },
+      pothole_id: potholeID
     });
 
     // Step 2: Add newly created marker to a marker array
@@ -217,12 +218,13 @@ $(function(){
     // There are four steps to this process
 
     // Step 1: Grab input values from form and shove them into jquery variables
-    // Left out 'user_id' for now
-    var $name =$('#name').val();
-    var $description=$('#description').val();
-    var $latitude=currentLat
-    var $longitude=currentLng
-    var $vote_count= 1
+    // Need to refactor 'user_id'
+    var $name = $('#name').val();
+    var $description = $('#description').val();
+    var $latitude = currentLat
+    var $longitude = currentLng
+    var $vote_count = 1
+    var $user_id = 1
 
     // Step 2: Set up a 'pothole' hash with those values
     // We'll feed this into ajax call and it'll become params for 'create' action
@@ -233,7 +235,8 @@ $(function(){
           description: $description,
           latitude: $latitude,
           longitude: $longitude,
-          vote_count: $vote_count
+          vote_count: $vote_count,
+          user_id: $user_id
         }
       };
 
@@ -251,12 +254,14 @@ $(function(){
       var newContent = [
         "<h1>" + data.name + " the Pothole</h1>",
         "<div>" + data.description + "</div>",
-        "<button class='upvote vote' id='" + data.id + "'>Upvote!</button>",
-        "<div class='vote_counter' id='" + data.id + "'>" + data.vote_count + "</div>",
-        "<button class='downvote vote' id='" + data.id + "'>Downvote!</button>"
+        "<button class='upvote vote' id='" + data.id + "'>Still broken!</button>",
+        "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
+        "<button class='downvote vote' id='" + data.id + "'>Fixed!</button>",
+        "<button class='deleteButton' id='" + data.id + "'>Delete this pothole!</button>"
       ].join("")
 
       // Step 4.2: Replace infobox content with new content
+      debugger
       infobox.setContent(newContent)
     })
   })
@@ -281,13 +286,14 @@ $(function(){
       var potholeContent = [
         "<h1>" + item.name + " the Pothole</h1>",
         "<div>" + item.description + "</div>",
-        "<button class='upvote vote' id='" + item.id + "'>Upvote!</button>",
-        "<div class='vote_counter' id='" + item.id + "'>" + item.vote_count + "</div>",
-        "<button class='downvote vote' id='" + item.id + "'>Downvote!</button>"
+        "<button class='upvote vote' id='" + item.id + "'>Still broken!</button>",
+        "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
+        "<button class='downvote vote' id='" + item.id + "'>Fixed!</button>",
+        "<button class='deleteButton' id='" + item.id + "'>Delete this pothole!</button>"
       ].join("")
 
       // Execute
-      createMarker(itemData, potholeContent);
+      createMarker(itemData, potholeContent, item.id);
 
     })
   })
@@ -351,5 +357,48 @@ $(function(){
         $countDiv.html($newValue)
       })
     })
+  })
+
+
+
+  ///////////////
+  // DELETE!!! //
+  ///////////////
+
+  // NOTE: Make sure delete_button has hidden class unless user_id == current_user.id
+
+  $('body').on('click','.deleteButton', function(event){
+    event.preventDefault();
+
+    // Step 1: Grab pothole id
+    var $potholeID = this.id
+
+    // Step 2: Ask for confirmation (only execute if true)
+    var confirmDelete = window.confirm("Are you sure you want to delete this pothole?");
+
+    if (confirmDelete == true) {
+
+      // Step 3: Ajax call to delete
+      $.ajax({
+        method: "delete",
+        url: "/potholes/" + $potholeID
+      }).done(function(data){
+
+        // Step 4: Close infobox
+        infobox.close();
+
+        // Step 5: Loop through markers array, find matching id, remove it
+        for (i in markers) {
+          if ( markers[i]["pothole_id"] == $potholeID) {
+            markers[i].setMap(null);
+          }
+        }
+
+      }) // end of .done()
+
+    } else {
+      // Step 6: In case user is dumb
+      console.log("OK, then why did you click delete?")
+    }
   })
 })
