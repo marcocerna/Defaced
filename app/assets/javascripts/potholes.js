@@ -10,6 +10,7 @@ $(function(){
   });
   var isWindowOpen = false;
   var newMarker = false;
+  var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,22 @@ $(function(){
     // Step 2: Create map (with that options variable) and throw it into a div
     map = new google.maps.Map($("#map-canvas")[0],mapOptions);
 
+    //conditional to check for geolocation capabilities.
+     if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+      //assigns current position to pos variable
+      var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      //creates blue dot and locates it using pos
+      var userMarker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          icon: im
+        });
+          map.setCenter(pos); //centers the map on pos
+        }, function() {
+          handleNoGeolocation(true);
+        });
+      }
 
     // Step 3: Allow for new markers to be created upon double clicking
     // This executes the createMarker function (defined below)
