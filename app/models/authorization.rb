@@ -11,8 +11,8 @@ class Authorization < ActiveRecord::Base
 	    user = User.create :name => auth_hash["user_info"]["name"], :email => auth_hash["user_info"]["email"]
 	    auth = create :user => user, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
 	  end
-	 
+
 	  auth
-	  
+
 	end
 end
