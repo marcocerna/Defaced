@@ -10,7 +10,7 @@ $(function(){
   });
   var isWindowOpen = false;
   var newMarker = false;
-  var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+  var blueDot = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,14 +41,14 @@ $(function(){
      if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
       //assigns current position to pos variable
-      var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
       //creates blue dot and locates it using pos
       var userMarker = new google.maps.Marker({
-          position: pos,
+          position: currentPosition,
           map: map,
-          icon: im
+          icon: blueDot
         });
-          map.setCenter(pos); //centers the map on pos
+          map.setCenter(currentPosition); //centers the map on pos
         }, function() {
           handleNoGeolocation(true);
         });
