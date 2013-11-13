@@ -29,6 +29,14 @@ class PhotosController < ApplicationController
     redirect_to photos_path, notice: "Photo was successfully destroyed!"
   end
 
+  def all_photos
+    @photos = Photo.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @photos }
+    end
+  end
+
 
 
 
