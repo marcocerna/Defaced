@@ -7,5 +7,6 @@ PotholePatrol::Application.routes.draw do
 
   get   '/logout', to: 'sessions#destroy'
 
+  get   '/all_photos', to: 'photos#all_photos'
   resources :photos, :potholes, :votes
 end
