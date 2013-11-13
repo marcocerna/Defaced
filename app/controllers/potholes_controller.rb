@@ -12,7 +12,7 @@ end
 
 def create
   @pothole = Pothole.create(params[:pothole])
-  redirect_to potholes_path
+  render json: @pothole, status: 201
 end
 
 
