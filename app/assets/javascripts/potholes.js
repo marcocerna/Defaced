@@ -8,16 +8,17 @@ $(function(){
      content: "Hello!",
      maxWidth: 300
   });
+  var isWindowOpen = false;
 
   // Initialize: sets up default map and map behavior
   function initialize() {
 
     // This variable sets up basic map functionality
     var mapOptions = {
-        center: new google.maps.LatLng(37.7833, -122.4167), //set default center to be SF
-        zoom: 13,//set default zoom to show entire extent of SF
+        center: new google.maps.LatLng(37.7833, -122.4167),         //set default center to be SF
+        zoom: 13,                                                   //set default zoom to show entire extent of SF
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDoubleClickZoom: true, //disabled double click zoom
+        disableDoubleClickZoom: true,                               //disabled double click zoom
     };
 
 
@@ -33,6 +34,10 @@ $(function(){
 
     // On double click, creates marker with createPothole function
     google.maps.event.addListener(map,'dblclick',function(event){
+      // if (isWindowOpen === true) {
+      //   infowindow.close();
+      //   isWindowOpen = false;
+      // }
       createPothole(event.latLng);
     });
   }
@@ -57,7 +62,7 @@ $(function(){
       animation: google.maps.Animation.DROP,
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 5
+        scale: 3
       }
     });
 
@@ -78,9 +83,9 @@ $(function(){
       "<form id='potholeForm'>",
         "<input id='name' type='text'name='name'placeholder='name'><br>",
         "<input type='text' id='description' name='description'placeholder='description'>",
-        "<input type='hidden' id='latitude' name='latitude' value='"+markerLocation.latitude+"'>",
-        "<input type='hidden' id ='longitude' name='longitude' value='"+markerLocation.longitude+"'>",
-        "<button id='ajax'></button>",
+        "<input type='hidden' id='latitude' name='latitude' value='" + markerLocation.latitude + "'>",
+        "<input type='hidden' id ='longitude' name='longitude' value='" + markerLocation.longitude + "'><br>",
+        "<button id='ajax'>Submit Pothole!</button>",
       "</form>"
 
       ].join("")
@@ -107,7 +112,7 @@ $(function(){
 
 
     // On clicking marker, centers and opens/closes info window
-    var isWindowOpen = false;
+
     google.maps.event.addListener(marker, 'click', function(){
 
       map.panTo(marker.getPosition());
@@ -116,9 +121,13 @@ $(function(){
         infowindow.setContent(contentString);
         infowindow.open(map,marker);
         isWindowOpen = true;
-      } else {
+      } else if (infowindow.content === contentString) {
         infowindow.close();
         isWindowOpen = false;
+      } else {
+        infowindow.close();
+        infowindow.setContent(contentString);
+        infowindow.open(map,marker);
       }
     });
   } // end of potHole()
@@ -180,9 +189,19 @@ $(function(){
         }
       };
     console.log(pothole)
-    $.post("/potholes",pothole).done(function(data){
-      alert('hep')
+    $.post("/potholes", pothole).done(function(data) {
+      alert('Your pothole was created!')
       console.log(data)
+
+      var newContent = [
+        "<h1>" + data.name + " the Pothole</h1>",
+        "<div>" + data.description + "</div>",
+        "<button class='upvote vote' id='" + data.id + "'>Upvote!</button>",
+        "<div class='vote_counter' id='" + data.id + "'>" + data.vote_count + "</div>",
+        "<button class='downvote vote' id='" + data.id + "'>Downvote!</button>"
+      ].join("")
+
+      infowindow.setContent(newContent)
       // Something else will get done here
     })
   })
@@ -205,7 +224,7 @@ $(function(){
         "<h1>" + item.name + " the Pothole</h1>",
         "<div>" + item.description + "</div>",
         "<button class='upvote vote' id='" + item.id + "'>Upvote!</button>",
-        "<div class='vote_counter' id='" + item.id + "'>1</div>",
+        "<div class='vote_counter' id='" + item.id + "'>" + item.vote_count + "</div>",
         "<button class='downvote vote' id='" + item.id + "'>Downvote!</button>"
       ].join("")
 
