@@ -2,20 +2,30 @@
 <!--<%= link_to "add new photo", new_photo_path%><br>-->
 Current pothole collection:<br>
 
-<% @photos.each do |photo| %>
-<% if photo.image_processed? %>
-  <a href="/photos/<%=photo.id%>"><%= image_tag photo.image_source.url(:thumb).to_s %></a>
-<% else %>
-  <em>Processing...</em>
-<% end %>
-<%= button_to "delete image", { action: "destroy", id: photo.id },
-                              :method => :delete,
-                              data: {confirm: "Are you sure?" } %>
-<% end %>
+<div id="photos">
+  <% @photos.each do |photo| %>
+  <% if photo.image_processed? %>
+    <a href="/photos/<%=photo.id%>"><%= image_tag photo.image_source.url(:thumb).to_s %></a>
+  <% else %>
+    <em class="photo_loading" data-photoId="<%= photo.id%>">Processing...</em>
+  <% end %>
+  <%= button_to "delete image", { action: "destroy", id: photo.id },
+                                :method => :delete,
+                                data: {confirm: "Are you sure?" } %>
+  <% end %>
+</div>
+
+<div class="clear"></div>
 
 Upload a new Photo:
 <%= direct_upload_form_for @uploader do |f| %>
-  <p><%= f.file_field :image_source %></p>
+  <p><%= f.file_field :image_source, multiple: true, name: "photo[image_source]" %></p>
   <p><%= f.submit "Upload Image" %></p>
 <% end %>
 
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

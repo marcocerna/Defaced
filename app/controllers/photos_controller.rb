@@ -16,11 +16,17 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+    # @photo.remote_image_url ? response = {remote_image_url: @photo.image_source.url(:thumb).to_s} : response = {remote_image_url: false}
+    respond_to do |format|
+      format.html
+      format.json { render json: @photo.to_json }
+    end
   end
 
   def destroy
-    Photo.delete(params[:id])
-    redirect_to photos_path
+    @photo = Photo.find(params[:id])
+    @photo.destroy
+    redirect_to photos_path, notice: "Photo was successfully destroyed!"
   end
 
 

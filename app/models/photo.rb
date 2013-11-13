@@ -29,4 +29,7 @@ class Photo < ActiveRecord::Base
     end
   end
 
+  def as_json(opts = {})
+    super.merge(thumbnail_url: image_source.url(:thumb))
+  end
 end
