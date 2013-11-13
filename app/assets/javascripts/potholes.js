@@ -9,9 +9,8 @@ $(function(){
      maxWidth: 300
   });
   var isWindowOpen = false;
-  var newMarker = false;
+  var newMarkerExists = false;
   var blueDot = "/assets/blueDot.png";
-
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -57,9 +56,11 @@ $(function(){
     // Step 3: Allow for new markers to be created upon double clicking
     // This executes the createMarker function (defined below)
     google.maps.event.addListener(map,'dblclick',function(event){
-      infobox.close();
-      newMarker = true;
-      createMarker(event.latLng);
+      if (newMarkerExists == false) {
+        infobox.close();
+        newMarkerExists = true;
+        createMarker(event.latLng);
+      }
     });
   }
 
@@ -126,7 +127,7 @@ $(function(){
 
 
     // Step 5: If it's a new marker, open the infobox
-    if (newMarker === true) {
+    if (newMarkerExists === true) {
       infobox.open(map, marker);
       isWindowOpen = true;
     };
@@ -258,11 +259,13 @@ $(function(){
         "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
         "<button class='downvote vote' id='" + data.id + "'>Fixed!</button>",
         "<button class='deleteButton' id='" + data.id + "'>Delete this pothole!</button>"
-      ].join("")
+      ].join("");
 
       // Step 4.2: Replace infobox content with new content
-      debugger
-      infobox.setContent(newContent)
+      infobox.setContent(newContent);
+
+      // Step 4.3: Allow a new marker to be created
+      newMarkerExists = false;
     })
   })
 
@@ -389,7 +392,7 @@ $(function(){
 
         // Step 5: Loop through markers array, find matching id, remove it
         for (i in markers) {
-          if ( markers[i]["pothole_id"] == $potholeID) {
+          if ( markers[i]["pothole_id"] == $potholeID || markers[i]["pothole_id"] == null) {
             markers[i].setMap(null);
           }
         }
