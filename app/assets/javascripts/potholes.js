@@ -236,17 +236,18 @@ $(function(){
     }
 
     $.post("/votes", vote).done(function(data) {
-      alert("Yay, your vote got created!")
-
       var $countDiv = $('.vote_counter[id="' + data.pothole_id + '"]')
 
       $.getJSON("/potholes.json", function(json) {
-        debugger
-        for (hash in json) {
-          if (hash["id"] == data.pothole_id) {
-            var $newValue = hash["vote_count"]
+
+        for (i in json) {
+
+          if (json[i]["id"] == data.pothole_id) {
+            var $newValue = json[i]["vote_count"]
           }
         }
+
+        debugger
         $countDiv.html($newValue)
       })
 
