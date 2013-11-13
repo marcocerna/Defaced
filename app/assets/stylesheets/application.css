@@ -13,40 +13,42 @@
  */
 
 
-body{
-    font-family:"Lucida Grande", arial, sans-serif;
-    background:#F3F3F3;
+body {
+  font-family:"Lucida Grande", arial, sans-serif;
+  background:#F3F3F3;
 }
- 
-ul{
-    margin:0;
-    padding:0;
+
+ul {
+  margin:0;
+  padding:0;
 }
- 
-li{
-    width:100px;
-    height:50px;
-    float:left;
-    color:#191919;
-    text-align:center;
-    overflow:hidden;
+
+li {
+  width:100px;
+  height:50px;
+  float:center;
+  color:#191919;
+  text-align:center;
+  overflow:hidden;
+  display: inline;
+  opacity: 1;
 }
- 
-a{
-    color:#FFF;
-    text-decoration:none;
+
+a {
+  color:#FFF;
+  text-decoration:none;
 }
- 
-p{
-    padding:0px 5px;
+
+p {
+  padding:0px 5px;
 }
- 
-    .subtext{
-        padding-top:15px;
-    }
- 
-.blueOne{background:#332CA8;}
-.blueTwo{background:#3C3885;}
-.blueThree{background:#181276;}
-.blueFour{background:#6962D6;}
-.blueFive{background:#8883D6;}
+
+.subtext {
+  padding-top:15px;
+}
+
+.blueOne { background:#332CA8;}
+.blueTwo { background:#3C3885;}
+.blueThree { background:#181276;}
+.blueFour { background:#6962D6;}
+.blueFive { background:#8883D6;}
