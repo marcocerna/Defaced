@@ -38,11 +38,11 @@ $(function(){
 
 
     // Step 3: Allow for new markers to be created upon double clicking
-    // This executes the createPothole function (defined below)
+    // This executes the createMarker function (defined below)
     google.maps.event.addListener(map,'dblclick',function(event){
       infobox.close();
       newMarker = true;
-      createPothole(event.latLng);
+      createMarker(event.latLng);
     });
   }
 
@@ -54,7 +54,7 @@ $(function(){
 
   // This is a big complicated mess
   // Creates pothole marker on map (but doesn't touch the database)
-  function createPothole(location, content) {
+  function createMarker(location, content) {
 
 
     // Step 1: Create the marker
@@ -85,7 +85,7 @@ $(function(){
     var markerLocation = {latitude:marker.position.ob, longitude:marker.position.pb}
 
     // If a new marker, creates a form
-    // If an existing marker, uses content data passed into createPothole function
+    // If an existing marker, uses content data passed into createMarker function
     if (content === undefined) {
       contentString = [
       "<h2>New Pothole</h2>",
@@ -270,7 +270,7 @@ $(function(){
       ].join("")
 
       // Execute
-      createPothole(itemData, potholeContent);
+      createMarker(itemData, potholeContent);
 
     })
   })
