@@ -6,7 +6,8 @@ $(function(){
   var currentLng;
   var infobox = new google.maps.InfoWindow({
      content: "Hello!",
-     maxWidth: 300
+     maxWidth: 500,
+     maxHeight: 500
   });
   var isWindowOpen = false;
   var newMarkerExists = false;
@@ -256,9 +257,11 @@ $(function(){
         "<h1>" + data.name + " the Pothole</h1>",
         "<div>" + data.description + "</div>",
         "<button class='upvote vote' id='" + data.id + "'>Still broken!</button>",
-        "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
         "<button class='downvote vote' id='" + data.id + "'>Fixed!</button>",
-        "<button class='deleteButton' id='" + data.id + "'>Delete this pothole!</button>"
+        "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
+        "<button class='deleteButton' id='" + data.id + "'>Delete!</button>",
+        "<button class='showPhotosButton' id='" + data.id + "'>Show Photos!</button>",
+        "<button class='addPhotosButton hidden' id='" + data.id + "'>Add Photos!</button>"
       ].join("");
 
       // Step 4.2: Replace infobox content with new content
@@ -290,9 +293,11 @@ $(function(){
         "<h1>" + item.name + " the Pothole</h1>",
         "<div>" + item.description + "</div>",
         "<button class='upvote vote' id='" + item.id + "'>Still broken!</button>",
-        "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
         "<button class='downvote vote' id='" + item.id + "'>Fixed!</button>",
-        "<button class='deleteButton' id='" + item.id + "'>Delete this pothole!</button>"
+        "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
+        "<button class='deleteButton' id='" + item.id + "'>Delete!</button>",
+        "<button class='showPhotosButton' id='" + item.id + "'>Show Photos!</button>",
+        "<button class='addPhotosButton hidden' id='" + item.id + "'>Add Photos!</button>"
       ].join("")
 
       // Execute
@@ -404,4 +409,19 @@ $(function(){
       console.log("OK, then why did you click delete?")
     }
   })
+
+
+
+  //////////////////////////
+  // Toggle Photo Buttons //
+  //////////////////////////
+
+  $('body').on('click', '.showPhotosButton', function(event) {
+    $('.addPhotosButton[id="#"]').toggleClass('hidden');
+    $('.showPhotosButton[id="#"]').toggleClass('hidden');
+  })
+
+
+
+
 })
