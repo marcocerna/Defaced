@@ -4,10 +4,13 @@ $(function(){
   var markers = [];
   var currentLat;
   var currentLng;
+  var infowindow = new google.maps.InfoWindow({
+     content: "Hello!",
+     maxWidth: 300
+  });
 
   // Initialize: sets up default map and map behavior
   function initialize() {
-
 
     // This variable sets up basic map functionality
     var mapOptions = {
@@ -17,6 +20,12 @@ $(function(){
         disableDoubleClickZoom: true, //disabled double click zoom
     };
 
+
+    // Create the one info window we're gonna use
+    var infowindow = new google.maps.InfoWindow({
+         content: "Hello!",
+         maxWidth: 300
+    });
 
     // Creates map and throws it into a div
     map = new google.maps.Map($("#map-canvas")[0],mapOptions);
@@ -85,11 +94,7 @@ $(function(){
 
     // Part 4
     // Creates info window for one marker
-    var infowindow = new google.maps.InfoWindow({
-         content: contentString,
-         maxWidth: 300
-    });
-
+    infowindow.setContent(contentString);
 
 
     // When dragging, updates current variable
@@ -101,29 +106,22 @@ $(function(){
     })
 
 
-
-
-
-    // What single clicks do
+    // On clicking marker, centers and opens/closes info window
+    var isWindowOpen = false;
     google.maps.event.addListener(marker, 'click', function(){
 
-      // On first click, centers and opens information window
-      map.setCenter(marker.getPosition());
-      infowindow.open(map,marker);
+      map.panTo(marker.getPosition());
 
-      // On second click, zooms to pothole
-      google.maps.event.addListener(marker, 'click', function() {
-       map.setZoom(16);
-
-
-
-        });
-     });
-
-
+      if (isWindowOpen == false) {
+        infowindow.setContent(contentString);
+        infowindow.open(map,marker);
+        isWindowOpen = true;
+      } else {
+        infowindow.close();
+        isWindowOpen = false;
+      }
+    });
   } // end of potHole()
-
-
 
 
 
