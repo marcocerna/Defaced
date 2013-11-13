@@ -10,7 +10,7 @@ $(function(){
   });
   var isWindowOpen = false;
   var newMarker = false;
-  var blueDot = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+  var blueDot = "/assets/blueDot.png";
 
 
 /////////////////////////////////////////////////////////////////////////////
