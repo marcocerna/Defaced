@@ -235,11 +235,21 @@ $(function(){
       }
     }
 
+    // Ajax call and dynamic vote count updating
+    $.post("/votes", vote).done(function(data) {
+      var $countDiv = $('.vote_counter[id="' + data.pothole_id + '"]')
 
+      $.getJSON("/potholes.json", function(json) {
 
+        for (i in json) {
+          if (json[i]["id"] == data.pothole_id) {
+            var $newValue = json[i]["vote_count"]
+          }
+        }
+        $countDiv.html($newValue)
+      })
+    })
   })
-
-
 })
 
 
