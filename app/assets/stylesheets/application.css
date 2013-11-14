@@ -86,5 +86,25 @@ p{
     padding:0px 5px;
 }
 
+.subtext{
+        padding-top:15px;
+    }
+
+.blueOne{background:#332CA8;}
+.blueTwo{background:#3C3885;}
+.blueThree{background:#181276;}
+.blueFour{background:#6962D6;}
+.blueFive{background:#8883D6;}
 
 
+.hidden {
+    display: none;
+}
+
+img {
+    max-width: 300px;
+}
+
+.gm-style-iw {
+    height: 500px;
+}

@@ -112,7 +112,7 @@ $(function(){
 
       "<form id='potholeForm'>",
         "<input id='name' type='text'name='name'placeholder='name'><br>",
-        "<input type='text' id='description' name='description'placeholder='description'>",
+        "<input type='text' id='description' name='description' placeholder='description'>",
         "<input type='hidden' id='latitude' name='latitude' value='" + markerLocation.latitude + "'>",
         "<input type='hidden' id ='longitude' name='longitude' value='" + markerLocation.longitude + "'><br>",
         "<button id='ajax'>Submit Pothole!</button>",
@@ -260,8 +260,10 @@ $(function(){
         "<button class='downvote vote' id='" + data.id + "'>Fixed!</button>",
         "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
         "<button class='deleteButton' id='" + data.id + "'>Delete!</button>",
-        "<button class='showPhotosButton' id='" + data.id + "'>Show Photos!</button>",
-        "<button class='addPhotosButton hidden' id='" + data.id + "'>Add Photos!</button>"
+        "<button class='showPhotosButton showHide' id='" + data.id + "'>Show Photos!</button>",
+        "<button class='hidePhotosButton showHide hidden' id='" + data.id + "'>Hide Photos!</button>",
+        "<button class='addPhotosButton hidden' id='" + data.id + "'>Add Photos!</button>",
+        "<div class='storePhotos hidden' id='" + data.id + "'>I'm a div!</div>"
       ].join("");
 
       // Step 4.2: Replace infobox content with new content
@@ -296,8 +298,19 @@ $(function(){
         "<button class='downvote vote' id='" + item.id + "'>Fixed!</button>",
         "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
         "<button class='deleteButton' id='" + item.id + "'>Delete!</button>",
-        "<button class='showPhotosButton' id='" + item.id + "'>Show Photos!</button>",
-        "<button class='addPhotosButton hidden' id='" + item.id + "'>Add Photos!</button>"
+        "<button class='showPhotosButton showHide' id='" + item.id + "'>Show Photos!</button>",
+
+        "<div class='photosContent hidden' id='" + item.id + "'>",
+          "<button class='hidePhotosButton showHide' id='" + item.id + "'>Hide Photos!</button>",
+          "<button class='addPhotosButton' id='" + item.id + "'>Add Photos!</button>",
+          "<div class='storePhotos' id='" + item.id + "'><img id='photo' src='http://nycprowler.com/prowler/wp-content/uploads/2013/10/cats-animals-kittens-background-us.jpg'></div>",
+
+          "<form class='addPhotosForm'> ",
+            "<input type='text' name='image_source' placeholder='Add image URL'>",
+            "<input type='text' name='image_source' placeholder='Add image URL'>",
+            "<input type='submit'>",
+          "</form>",
+        "</div>"
       ].join("")
 
       // Execute
@@ -416,12 +429,32 @@ $(function(){
   // Toggle Photo Buttons //
   //////////////////////////
 
-  $('body').on('click', '.showPhotosButton', function(event) {
-    $('.addPhotosButton[id="#"]').toggleClass('hidden');
-    $('.showPhotosButton[id="#"]').toggleClass('hidden');
+  $('body').on('click', '.showHide', function(event) {
+    event.preventDefault();
+    console.log("this works!")
+
+    $('.showPhotosButton[id="' + this.id + '"]').toggleClass('hidden');
+    $('.photosContent[id="' + this.id + '"]').toggleClass('hidden');
+
   })
 
+  $('body').on('click', '.addPhotosButton', function(event) {
+    event.preventDefault();
 
+    var $image_source = whatever
+    var $pothole_id = whatever
+    var $user_id = whatever
+
+    var photo =
+      photo:
+        image_source: $image_source
+        pothole_id: $pothole_id
+        user_id: $user_id
+
+    $post('/photos', photo).done(function(data) {
+
+    })
+  }
 
 
 })
