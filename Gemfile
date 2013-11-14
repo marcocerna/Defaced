@@ -24,6 +24,7 @@ gem 'rmagick'      #for carrierwave
 gem 'fog'          #ruby cloud service library(cloud resources)
 gem 'unf'
 gem 'carrierwave_direct'
+gem 'gon'
 
 group :development, :test do
   gem 'pry-rails'

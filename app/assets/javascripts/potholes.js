@@ -61,13 +61,16 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
-    google.maps.event.addListener(map,'dblclick',function(event){
-      if (newMarkerExists == false) {
-        infobox.close();
-        newMarkerExists = true;
-        createMarker(event.latLng);
-      }
-    });
+    ////////////ONLY WHEN LOGGED IN//////////////////////
+    if(gon.current_user){
+      google.maps.event.addListener(map,'dblclick',function(event){
+        if (newMarkerExists == false) {
+          infobox.close();
+          newMarkerExists = true;
+          createMarker(event.latLng);
+        }
+      });
+    }
   }
 
 
