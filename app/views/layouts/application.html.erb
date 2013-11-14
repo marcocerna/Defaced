@@ -14,21 +14,6 @@
             <%= csrf_meta_tags %>
   </head>
 <body>
-  <div id="panel">
-   <p>Pothole Patrol!</p>
-    <ul>
-     <li class="blueOne">
-      <%if current_user%>
-       <%=link_to "Sign Out", signout_path%>
-      <%else%>
-       <p class="subtext">Login</p>
-       <%=link_to "Sign in with twitter", "/auth/twitter"%><br>
-       <%=link_to "Sign in with facebook", "/auth/facebook"%>
-      <%end%>
-
-     </li>
-    </ul>
-  </div>
   <%= yield %>
 </body>
 </html>

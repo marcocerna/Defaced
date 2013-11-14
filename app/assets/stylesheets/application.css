@@ -12,17 +12,41 @@
  *= require_tree .
  */
 
+#map-canvas {
+    height: 100%;
+    margin-top: 50px;
+}
+
+#panel {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+    background-color: rgb(250,250,250); opacity: .9;
+    margin-top: -50px;
+    max-height: 51px;
+}
+
+#loginDropDown{
+    z-index: 50;
+    margin-top: -50px;
+    position: absolute;
+    float: left ;
+}
 
 body{
     font-family:"Lucida Grande", arial, sans-serif;
     background:#F3F3F3;
+    height:100%;
+    margin: 0;
+    padding: 0;
 }
- 
+
 ul{
     margin:0;
     padding:0;
 }
- 
+
 li{
     width:100px;
     height:50px;
@@ -31,22 +55,28 @@ li{
     text-align:center;
     overflow:hidden;
 }
- 
+
 a{
     color:#FFF;
     text-decoration:none;
 }
- 
+
 p{
     padding:0px 5px;
 }
- 
-    .subtext{
-        padding-top:15px;
-    }
- 
-.blueOne{background:#332CA8;}
-.blueTwo{background:#3C3885;}
-.blueThree{background:#181276;}
-.blueFour{background:#6962D6;}
-.blueFive{background:#8883D6;}
+
+#loginButton{
+    color:white;
+}
+
+.blueOne{
+    background:#332CA8;
+    padding: 10px;
+    height: 31px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.linkText{
+    color:red;
+}
+
