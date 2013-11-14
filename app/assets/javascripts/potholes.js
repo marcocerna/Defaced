@@ -26,7 +26,6 @@ $(function(){
   function initialize() {
 
     // Step 1: Set up variable with custom map options
-    alert(gon.current_user)
     var mapOptions = {
         // Refactoring: If geolocation, center there. Else, SF
         center: new google.maps.LatLng(37.7833, -122.4167),         // Set default center to SF
