@@ -3,9 +3,9 @@ $(document).ready(function(){
   var isClicked = false
 
     //When clicked once opens div, clicked again closes the div
-    $('body').on('touchstart', '#loginButton', function(event){
+    $('body').on('touchstart', '#menuButton', function(event){
       if(isClicked ==false){
-        $('.blueOne').stop().animate({height:'120px'},{easing: 'easeOutBounce'})
+        $('.blueOne').stop().animate({height:'140px'},{easing: 'easeOutBounce'})
         isClicked=true
       }
       else{
@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     $('body').on('click', 'li', function(event){
       if(isClicked ==false){
-        $(this).stop().animate({height:'120px'},{easing: 'easeOutBounce'})
+        $(this).stop().animate({height:'140px'},{easing: 'easeOutBounce'})
         isClicked=true
       }
       else{
