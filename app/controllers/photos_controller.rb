@@ -11,7 +11,10 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.create(params[:photo])
-    redirect_to photos_path
+    # redirect_to photos_path
+
+
+    render json: @photo
   end
 
   def show
