@@ -93,3 +93,7 @@ p{
 .hidden {
     display: none;
 }
+
+h1 {
+    margin-right: 300px;
+}
