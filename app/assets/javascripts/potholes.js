@@ -26,6 +26,7 @@ $(function(){
   function initialize() {
 
     // Step 1: Set up variable with custom map options
+    alert(gon.current_user)
     var mapOptions = {
         // Refactoring: If geolocation, center there. Else, SF
         center: new google.maps.LatLng(37.7833, -122.4167),         // Set default center to SF
@@ -61,6 +62,9 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
+
+    ////////////ONLY WHEN LOGGED IN//////////////////////
+
     if(gon.current_user){
       google.maps.event.addListener(map,'dblclick',function(event){
         if (newMarkerExists == false) {
