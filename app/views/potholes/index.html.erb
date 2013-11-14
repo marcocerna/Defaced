@@ -13,16 +13,16 @@
     <ul>
      <li class="blueOne">
       <%if current_user%>
-       <%=link_to "Sign Out", signout_path%><br>
+       <p id="menuButton">Menu<br></p>
+       <%=link_to "Sign Out", signout_path,{:id=>"signOut"}%><br>
        <%=link_to "Photos",""%><br>
        <%=link_to "More Info",""%>
       <%else%>
-       <p id="loginButton">Login</p>
+       <p id="menuButton">Menu</p>
        <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"} %><br>
        <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br>
        <%=link_to "Photos",""%><br>
        <%=link_to "More Info",""%>
-
       <%end%>
      </li>
     </ul>
