@@ -25,7 +25,7 @@ $ ->
     interval = setInterval(->
       $.get("/photos/" + photoId + ".json").done (data) ->
         console.log data.thumbnail_url
-        debugger
+       # debugger
         if data.thumbnail_url
           $('.photo_loading').replaceWith("<img alt='' src='#{data.thumbnail_url}'>")
           clearInterval interval

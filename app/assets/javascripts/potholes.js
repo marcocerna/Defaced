@@ -1,16 +1,17 @@
 $(function(){
 
   var map;
-  var markers = [];
-  var currentLat;
+  var markers = [];                             // Where all markers are stored
+  var currentLat;                               // These two used to create pothole with last position
   var currentLng;
-  var infobox = new google.maps.InfoWindow({
+  var infobox = new google.maps.InfoWindow({    // One infobox, only content changes
      content: "Hello!",
-     maxWidth: 300
+     maxWidth: 700
   });
-  var isWindowOpen = false;
-  var newMarkerExists = false;
+  var isWindowOpen = false;                     // Used so only one window opens at a time
+  var newMarkerExists = false;                  // Used so only one marker creaed at a time
   var blueDot = "/assets/blueDot.png";
+  var currentMarker;                            // Maybe use this for photo sizing issue?
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -26,34 +27,39 @@ $(function(){
 
     // Step 1: Set up variable with custom map options
     var mapOptions = {
-        center: new google.maps.LatLng(37.7833, -122.4167),         //set default center to be SF
-        zoom: 13,                                                   //set default zoom to show entire extent of SF
+        // Refactoring: If geolocation, center there. Else, SF
+        center: new google.maps.LatLng(37.7833, -122.4167),         // Set default center to SF
+        zoom: 13,                                                   // Set default zoom to show entire city
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDoubleClickZoom: true,                               //disabled double click zoom
+        disableDoubleClickZoom: true,                               // Disable double click zoom
     };
 
 
     // Step 2: Create map (with that options variable) and throw it into a div
     map = new google.maps.Map($("#map-canvas")[0],mapOptions);
 
-    //conditional to check for geolocation capabilities.
+    // Step 3: Allow for geolocation (the blue dot)
      if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-      //assigns current position to pos variable
-      var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      //creates blue dot and locates it using pos
-      var userMarker = new google.maps.Marker({
+
+        // 3.1: Grab current position in a variable
+        var currentPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+        // 3.2: Place blue dot on current position
+        var userMarker = new google.maps.Marker({
           position: currentPosition,
           map: map,
           icon: blueDot
         });
-          map.setCenter(currentPosition); //centers the map on pos
-        }, function() {
+
+        // 3.3: Center on current position
+        map.setCenter(currentPosition);
+      }, function() {
           handleNoGeolocation(true);
         });
       }
 
-    // Step 3: Allow for new markers to be created upon double clicking
+    // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
     google.maps.event.addListener(map,'dblclick',function(event){
       if (newMarkerExists == false) {
@@ -70,7 +76,7 @@ $(function(){
 
 
 
-  // This is a big complicated mess
+  // This needs refactoring
   // Creates pothole marker on map (but doesn't touch the database)
   function createMarker(location, content, potholeID) {
 
@@ -99,7 +105,6 @@ $(function(){
 
 
     // Step 3: Set up HTML for infobox
-
     var contentString;
     var markerLocation = {latitude:marker.position.ob, longitude:marker.position.pb}
 
@@ -111,7 +116,7 @@ $(function(){
 
       "<form id='potholeForm'>",
         "<input id='name' type='text'name='name'placeholder='name'><br>",
-        "<input type='text' id='description' name='description'placeholder='description'>",
+        "<input type='text' id='description' name='description' placeholder='description'>",
         "<input type='hidden' id='latitude' name='latitude' value='" + markerLocation.latitude + "'>",
         "<input type='hidden' id ='longitude' name='longitude' value='" + markerLocation.longitude + "'><br>",
         "<button id='ajax'>Submit Pothole!</button>",
@@ -132,7 +137,7 @@ $(function(){
       isWindowOpen = true;
     };
 
-    // Bug fix: current lat/lng variables hold last dragged position
+    // Bug fix: Set currentLat/currentLng to hold last dragged position
     currentLat = markerLocation.latitude
     currentLng = markerLocation.longitude
 
@@ -145,15 +150,16 @@ $(function(){
 
 
     // On clicking marker, centers and opens/closes info window
+    // Refactoring: Does this need to go inside createMarker function?
 
     google.maps.event.addListener(marker, 'click', function(){
-
       map.panTo(marker.getPosition());
 
       if (isWindowOpen == false) {
         infobox.setContent(contentString);
         infobox.open(map,marker);
         isWindowOpen = true;
+        currentMarker = marker;
       } else if (infobox.content === contentString) {
         infobox.close();
         isWindowOpen = false;
@@ -161,6 +167,7 @@ $(function(){
         infobox.close();
         infobox.setContent(contentString);
         infobox.open(map,marker);
+        currentMarker = marker;
       }
     });
   } // end of potHole()
@@ -202,6 +209,7 @@ $(function(){
 /////////////////////////////////////////////////////////////////////////////////////
 
   // This lets everything happen only AFTER rest of window loads
+  // Refactoring: In a weird location, need to move it
   google.maps.event.addDomListener(window, 'load', initialize);
 
 
@@ -219,7 +227,7 @@ $(function(){
     // There are four steps to this process
 
     // Step 1: Grab input values from form and shove them into jquery variables
-    // Need to refactor 'user_id'
+    // Refactoring: fix 'user_id'
     var $name = $('#name').val();
     var $description = $('#description').val();
     var $latitude = currentLat
@@ -256,9 +264,13 @@ $(function(){
         "<h1>" + data.name + " the Pothole</h1>",
         "<div>" + data.description + "</div>",
         "<button class='upvote vote' id='" + data.id + "'>Still broken!</button>",
-        "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
         "<button class='downvote vote' id='" + data.id + "'>Fixed!</button>",
-        "<button class='deleteButton' id='" + data.id + "'>Delete this pothole!</button>"
+        "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
+        "<button class='deleteButton' id='" + data.id + "'>Delete!</button>",
+        "<button class='showPhotosButton showHide' id='" + data.id + "'>Show Photos!</button>",
+        "<button class='hidePhotosButton showHide hidden' id='" + data.id + "'>Hide Photos!</button>",
+        "<button class='addPhotosButton hidden' id='" + data.id + "'>Add Photos!</button>",
+        "<div class='storePhotos hidden' id='" + data.id + "'>I'm a div!</div>"
       ].join("");
 
       // Step 4.2: Replace infobox content with new content
@@ -287,18 +299,36 @@ $(function(){
       // Add pothole content
       // NOTE: This is repeated above. Maybe use a partial to DRY it.
       var potholeContent = [
-        "<h1>" + item.name + " the Pothole</h1>",
+        "<div id='content'>",
+        "<h1>" + item.name + "</h1>",
         "<div>" + item.description + "</div>",
         "<button class='upvote vote' id='" + item.id + "'>Still broken!</button>",
-        "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
         "<button class='downvote vote' id='" + item.id + "'>Fixed!</button>",
-        "<button class='deleteButton' id='" + item.id + "'>Delete this pothole!</button>"
+        "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
+        "<button class='deleteButton' id='" + item.id + "'>Delete!</button>",
+        "<button class='showPhotosButton showHide' id='" + item.id + "'>Show Photos!</button>",
+
+        "<div class='photosContent hidden' id='" + item.id + "'>",
+          "<button class='hidePhotosButton showHide' id='" + item.id + "'>Hide Photos!</button>",
+          "<button class='addPhotosButton' id='" + item.id + "'>Add Photos!</button>",
+          "<div class='storePhotos' id='" + item.id + "'><img id='photo' src='http://nycprowler.com/prowler/wp-content/uploads/2013/10/cats-animals-kittens-background-us.jpg'></div>",
+
+          "<form class='addPhotosForm'> ",
+            "<input type='text' name='image_source' placeholder='Add image URL'>",
+            "<input type='hidden' name='pothole_id' value='#'>",
+            "<input type='submit'>",
+          "</form>",
+        "</div>",
+        "</div>"
       ].join("")
 
       // Execute
       createMarker(itemData, potholeContent, item.id);
 
     })
+
+    // Optional: Marker clusters. Remove/comment out if you don't want it.
+    var markerCluster = new MarkerClusterer(map, markers);
   })
 
 
@@ -363,6 +393,8 @@ $(function(){
   })
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+
 
   ///////////////
   // DELETE!!! //
@@ -404,4 +436,74 @@ $(function(){
       console.log("OK, then why did you click delete?")
     }
   })
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+  //////////////////////////
+  // Toggle Photo Buttons //          // WARNING: Sizing issues
+  //////////////////////////
+
+  $('body').on('click', '.showHide', function(event) {
+    event.preventDefault();
+
+    infobox.close();
+    $('.showPhotosButton[id="' + this.id + '"]').toggleClass('hidden'); // Do we even need to check ID? Test this
+    $('.photosContent[id="' + this.id + '"]').toggleClass('hidden');
+    infobox.setContent("<div>I'm a div!</div>")                         // Needs to grab correct data w/o hidden class
+    infobox.open(map, currentMarker);
+
+  })
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+  ////////////////////////////
+  // Add Photo (incomplete) //
+  ////////////////////////////
+
+
+  $('body').on('click', '.addPhotosButton', function(event) {
+    event.preventDefault();
+
+    // Step 1: Grab attribute data
+    var $image_source = $('input[name="image_source"]')
+    var $pothole_id = $('input[name="pothole_id"]')
+    var $user_id = 1                                            // Placeholder; fix this
+
+    // Step 2: Set up params hash
+    var photo = {
+      photo: {
+        image_source: $image_source,
+        pothole_id: $pothole_id,
+        user_id: $user_id
+      }
+    }
+
+    // Step 3: Ajax call
+    $post('/photos', photo).done(function(data) {
+
+      alert("Yay, you posted a photo!");
+
+      // Step 4: Add picture to infoBox               // Only works for ONE photo; build a loop for this
+
+      // 4.1: Grab storePhotos div
+      var $photoDiv = $('.storePhotos')               // Test whether we need ID here too
+
+      // 4.2: Write html for photo
+      var $newPhoto = [
+        "<img src='" + data.remote_image_url + "'>"   // Check with Kristine whether this'll work
+      ]
+
+      // 4.3: Throw that photo into that div
+      $photoDiv.html($newPhoto)
+
+    }) // end of .done()
+
+    // Step 5 (maybe): Reopen infobox (so it sizes correctly?)
+  })
+
+
 })
