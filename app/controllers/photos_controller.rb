@@ -2,19 +2,19 @@ class PhotosController < ApplicationController
   def index
     @photos = Photo.all || "photos"
     @uploader = Photo.new.image_source
-    @uploader.success_action_redirect = new_photo_url
+    @uploader.success_action_redirect = new_pothole_photo_url
   end
 
   def new
     @photo = Photo.new(key: params[:key])
+    @photo[:pothole_id] = params[:pothole_id]
+    # render :inline => pothole_id
   end
 
   def create
     @photo = Photo.create(params[:photo])
-    # redirect_to photos_path
-
-
     render json: @photo
+    redirect_to root_path
   end
 
   def show
