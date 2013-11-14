@@ -61,9 +61,6 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
-
-    ////////////ONLY WHEN LOGGED IN//////////////////////
-
     if(gon.current_user){
       google.maps.event.addListener(map,'dblclick',function(event){
         if (newMarkerExists == false) {
@@ -85,7 +82,6 @@ $(function(){
   // Creates pothole marker on map (but doesn't touch the database)
   function createMarker(location, content, potholeID) {
 
-    // debugger
     // Step 1: Create the marker
 
     // (First, though, we use a special variable to make old ones non-draggable)
@@ -116,18 +112,7 @@ $(function(){
     // If a new marker, creates a form
     // If an existing marker, uses content data passed into createMarker function
     if (content === undefined) {
-      contentString = [
-      "<h2>New Pothole</h2>",
-
-      "<form id='potholeForm'>",
-        "<input id='name' type='text'name='name'placeholder='name'><br>",
-        "<input type='text' id='description' name='description' placeholder='description'>",
-        "<input type='hidden' id='latitude' name='latitude' value='" + markerLocation.latitude + "'>",
-        "<input type='hidden' id ='longitude' name='longitude' value='" + markerLocation.longitude + "'><br>",
-        "<button id='ajax'>Submit Pothole!</button>",
-      "</form>"
-
-      ].join("")
+      contentString = JST['templates/newForm'](markerLocation);
     } else {
       contentString = content;
     }
@@ -158,6 +143,7 @@ $(function(){
     // Refactoring: Does this need to go inside createMarker function?
 
     google.maps.event.addListener(marker, 'click', function(){
+
       map.panTo(marker.getPosition());
 
       if (isWindowOpen == false) {
@@ -176,39 +162,6 @@ $(function(){
       }
     });
   } // end of potHole()
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-  ////////////////////////////////////////////////////////
-  // These four functions connect to buttons on top bar //
-  ////////////////////////////////////////////////////////
-
-  // If we delete those buttons, we can probably delete these functions, too
-
-  // Main function
-  function setAllMap(map) {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-  }
-
-  // Button #1
-  function clearMarkers(){
-    setAllMap(null);
-  }
-
-  // Button #2
-  function showMarkers(){
-    setAllMap(map);
-  }
-
-  // Button #3
-  function deleteMarkers(){
-    clearMarkers();
-    markers =[];
-  }
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -264,12 +217,12 @@ $(function(){
 
       // Step 4.1: Create the html that will fill the infobox
       // We got back json data because we rendered that in the 'create' action
-      // NOTE: This is repeated below. Maybe use a partial to DRY it
-      var potholeContent = JST['templates/pothole'](data);
+      var newContent = JST['templates/pothole'](data);
 
-
-      // Step 4.2: Replace infobox content with new content
-      infobox.setContent(potholeContent);
+      // Step 4.2: Recreate marker with correct data
+      var lastMarker = markers.pop()
+      var lastPosition = lastMarker.position
+      createMarker(lastPosition, newContent, data.id);
 
       // Step 4.3: Allow a new marker to be created
       newMarkerExists = false;
@@ -292,7 +245,6 @@ $(function(){
       var itemData = new google.maps.LatLng( parseFloat(item.latitude), parseFloat(item.longitude) )
 
       // Add pothole content
-      // NOTE: This is repeated above. Maybe use a partial to DRY it.
       var potholeContent = JST['templates/pothole'](item);
 
       // Execute
@@ -494,11 +446,34 @@ $(function(){
   // Add Photo (two pager)  //
   ////////////////////////////
 
-  $('body').on('click', '.addPhotosButton', function(event) {
-    event.preventDefault()
+  // $('body').on('click', '.addPhotosButton', function(event) {
+  //   event.preventDefault()
 
 
-  })
+  //   var $pothole_id = $('input[name="pothole_id"]').val()
+  //   console.log("The pothole ID is: " + $pothole_id)
+
+  //   var photo = {
+  //     photo: {
+  //       pothole_id: $pothole_id
+  //     }
+  //   }
+
+  //   $.post('/photos', photo).done(function(data) {
+  //     console.log(data)
+  //     // redirect to /photos
+
+  //     // ajax call to uploader
+  //     $.ajax(url: uploader_action).done({
+
+  //       grab $user_id, $key, $pothole_id
+
+  //       $.post(all that stuff)
+  //     })
+  //   })
+
+
+  // })
 
 
 })
