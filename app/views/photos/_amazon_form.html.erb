@@ -1,6 +1,5 @@
 Upload a new Photo:
 <%= direct_upload_form_for @uploader do |f| %>
-  <%= f.hidden_field :pothole_id, value: @something %>
   <p><%= f.file_field :image_source, multiple: true, name: "photo[image_source]" %></p>
   <p><%= f.submit "Upload Image" %></p>
 <% end %>
