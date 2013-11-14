@@ -65,8 +65,8 @@ p{
     padding:0px 5px;
 }
 
-.subtext{
-    padding-top:10px;
+#loginButton{
+    color:white;
 }
 
 .blueOne{
@@ -75,5 +75,8 @@ p{
     height: 31px;
     margin-right: auto;
     margin-left: auto;
+}
+.linkText{
+    color:red;
 }
 

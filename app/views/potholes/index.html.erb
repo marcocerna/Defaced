@@ -15,9 +15,9 @@
       <%if current_user%>
        <%=link_to "Sign Out", signout_path%>
       <%else%>
-       <p class="subtext">Login</p>
-       <%=link_to "Sign in with twitter", "/auth/twitter"%><br>
-       <%=link_to "Sign in with facebook", "/auth/facebook"%>
+       <p id="loginButton">Login</p>
+       <%=link_to "Sign in with twitter", "/auth/twitter",{:class=>"linkText"} %><br>
+       <%=link_to "Sign in with facebook", "/auth/facebook",{:class=>"linkText"}%>
       <%end%>
      </li>
     </ul>
