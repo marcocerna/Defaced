@@ -3,6 +3,7 @@ class PotholesController < ApplicationController
 def index
   @potholes = Pothole.all
   @pothole = Pothole.new
+  gon.current_user = current_user
 
   respond_to do |format|
     format.html
