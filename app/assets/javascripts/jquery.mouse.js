@@ -26,6 +26,6 @@ $(document).ready(function(){
     });
 
     $('.linkText').hover(function(event){
-      //alert('hover is working')//set up toggle class here to show button is being hovered over
+      $(this).toggleClass("hoverText")
     })
 });

@@ -61,6 +61,9 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
+
+    ////////////ONLY WHEN LOGGED IN//////////////////////
+
     if(gon.current_user){
       google.maps.event.addListener(map,'dblclick',function(event){
         if (newMarkerExists == false) {
@@ -82,7 +85,7 @@ $(function(){
   // Creates pothole marker on map (but doesn't touch the database)
   function createMarker(location, content, potholeID) {
 
-    debugger
+    // debugger
     // Step 1: Create the marker
 
     // (First, though, we use a special variable to make old ones non-draggable)
