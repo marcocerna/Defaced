@@ -87,6 +87,9 @@ GEM
     formatador (0.2.4)
     geocoder (1.1.8)
     gmaps4rails (2.0.4)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -238,6 +241,7 @@ DEPENDENCIES
   fog
   geocoder
   gmaps4rails
+  gon
   jquery-fileupload-rails
   jquery-rails
   lodash-rails

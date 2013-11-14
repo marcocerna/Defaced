@@ -61,13 +61,15 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
-    google.maps.event.addListener(map,'dblclick',function(event){
-      if (newMarkerExists == false) {
-        infobox.close();
-        newMarkerExists = true;
-        createMarker(event.latLng);
-      }
-    });
+    if(gon.current_user){
+      google.maps.event.addListener(map,'dblclick',function(event){
+        if (newMarkerExists == false) {
+          infobox.close();
+          newMarkerExists = true;
+          createMarker(event.latLng);
+        }
+      });
+    }
   }
 
 
@@ -80,7 +82,7 @@ $(function(){
   // Creates pothole marker on map (but doesn't touch the database)
   function createMarker(location, content, potholeID) {
 
-
+    debugger
     // Step 1: Create the marker
 
     // (First, though, we use a special variable to make old ones non-draggable)
@@ -260,21 +262,11 @@ $(function(){
       // Step 4.1: Create the html that will fill the infobox
       // We got back json data because we rendered that in the 'create' action
       // NOTE: This is repeated below. Maybe use a partial to DRY it
-      var newContent = [
-        "<h1>" + data.name + " the Pothole</h1>",
-        "<div>" + data.description + "</div>",
-        "<button class='upvote vote' id='" + data.id + "'>Still broken!</button>",
-        "<button class='downvote vote' id='" + data.id + "'>Fixed!</button>",
-        "<div class='vote_counter' id='" + data.id + "'>Pothole sightings: " + data.vote_count + "</div>",
-        "<button class='deleteButton' id='" + data.id + "'>Delete!</button>",
-        "<button class='showPhotosButton showHide' id='" + data.id + "'>Show Photos!</button>",
-        "<button class='hidePhotosButton showHide hidden' id='" + data.id + "'>Hide Photos!</button>",
-        "<button class='addPhotosButton hidden' id='" + data.id + "'>Add Photos!</button>",
-        "<div class='storePhotos hidden' id='" + data.id + "'>I'm a div!</div>"
-      ].join("");
+      var potholeContent = JST['templates/pothole'](data);
+
 
       // Step 4.2: Replace infobox content with new content
-      infobox.setContent(newContent);
+      infobox.setContent(potholeContent);
 
       // Step 4.3: Allow a new marker to be created
       newMarkerExists = false;
@@ -298,29 +290,7 @@ $(function(){
 
       // Add pothole content
       // NOTE: This is repeated above. Maybe use a partial to DRY it.
-      var potholeContent = [
-        "<div id='content'>",
-        "<h1>" + item.name + "</h1>",
-        "<div>" + item.description + "</div>",
-        "<button class='upvote vote' id='" + item.id + "'>Upvote!</button>",
-        "<button class='downvote vote' id='" + item.id + "'>Downvote!</button>",
-        "<div class='vote_counter' id='" + item.id + "'>Vote Count: " + item.vote_count + "</div>",
-        "<button class='deleteButton' id='" + item.id + "'>Delete!</button>",
-        "<button class='showPhotosButton showHide' id='" + item.id + "'>Show Photos!</button>",
-
-        "<div class='photosContent hidden' id='" + item.id + "'>",
-          "<button class='hidePhotosButton showHide' id='" + item.id + "'>Hide Photos!</button>",
-          "<button class='addPhotosButton' id='" + item.id + "'>Add Photos!</button>",
-          "<div class='storePhotos' id='" + item.id + "'><img id='photo' src='http://nycprowler.com/prowler/wp-content/uploads/2013/10/cats-animals-kittens-background-us.jpg'></div>",
-
-          "<form class='addPhotosForm'> ",
-            "<input type='text' name='image_source' placeholder='Add image URL'>",
-            "<input type='hidden' name='pothole_id' value='#'>",
-            "<input type='submit'>",
-          "</form>",
-        "</div>",
-        "</div>"
-      ].join("")
+      var potholeContent = JST['templates/pothole'](item);
 
       // Execute
       createMarker(itemData, potholeContent, item.id);
@@ -454,6 +424,14 @@ $(function(){
     // infobox.setContent("<div>I'm a div!</div>")                         // Needs to grab correct data w/o hidden class
     // infobox.open(map, currentMarker);
 
+
+    // Search through database for pictures with pothole_id
+
+    // Append them to storePhotos div
+
+
+
+
   })
 
 
@@ -465,44 +443,58 @@ $(function(){
   ////////////////////////////
 
 
+  // $('body').on('click', '.addPhotosButton', function(event) {
+  //   event.preventDefault();
+
+  //   // Step 1: Grab attribute data
+  //   var $image_source = $('input[name="image_source"]').val()
+  //   var $pothole_id = $('input[name="pothole_id"]').val()
+  //   var $user_id = 1                                            // Placeholder; fix this
+
+  //   // Step 2: Set up params hash
+  //   var photo = {
+  //     photo: {
+  //       image_source: $image_source,
+  //       pothole_id: $pothole_id,
+  //       user_id: $user_id
+  //     }
+  //   }
+
+  //   // Step 3: Ajax call
+  //   $post('/photos', photo).done(function(data) {
+
+  //     alert("Yay, you posted a photo!");
+
+  //     // Step 4: Add picture to infoBox               // Only works for ONE photo; build a loop for this
+
+  //     // 4.1: Grab storePhotos div
+  //     var $photoDiv = $('.storePhotos')               // Test whether we need ID here too
+
+  //     // 4.2: Write html for photo
+  //     var $newPhoto = [
+  //       "<img src='" + data.remote_image_url + "'>"   // Check with Kristine whether this'll work
+  //     ]
+
+  //     // 4.3: Throw that photo into that div
+  //     $photoDiv.html($newPhoto)
+
+  //   }) // end of .done()
+
+  //   // Step 5 (maybe): Reopen infobox (so it sizes correctly?)
+  // })
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+  ////////////////////////////
+  // Add Photo (two pager)  //
+  ////////////////////////////
+
   $('body').on('click', '.addPhotosButton', function(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    // Step 1: Grab attribute data
-    var $image_source = $('input[name="image_source"]')
-    var $pothole_id = $('input[name="pothole_id"]')
-    var $user_id = 1                                            // Placeholder; fix this
 
-    // Step 2: Set up params hash
-    var photo = {
-      photo: {
-        image_source: $image_source,
-        pothole_id: $pothole_id,
-        user_id: $user_id
-      }
-    }
-
-    // Step 3: Ajax call
-    $post('/photos', photo).done(function(data) {
-
-      alert("Yay, you posted a photo!");
-
-      // Step 4: Add picture to infoBox               // Only works for ONE photo; build a loop for this
-
-      // 4.1: Grab storePhotos div
-      var $photoDiv = $('.storePhotos')               // Test whether we need ID here too
-
-      // 4.2: Write html for photo
-      var $newPhoto = [
-        "<img src='" + data.remote_image_url + "'>"   // Check with Kristine whether this'll work
-      ]
-
-      // 4.3: Throw that photo into that div
-      $photoDiv.html($newPhoto)
-
-    }) // end of .done()
-
-    // Step 5 (maybe): Reopen infobox (so it sizes correctly?)
   })
 
 

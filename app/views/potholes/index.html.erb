@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
       html { height: 100% }
     </style>
@@ -11,16 +11,20 @@
 </header>
   <div id = "loginDropDown">
     <ul>
-     <li class="blueOne">
+    <li class="blueOne">
       <%if current_user%>
-       <%=link_to "Sign Out", signout_path%>
+      <p id="menuButton">Menu<br></p>
+      <%=link_to "Sign Out", signout_path,{:id=>"signOut"}%><br>
+      <%=link_to "Photos",""%><br>
+      <%=link_to "More Info",""%>
       <%else%>
-       <p id="loginButton">Login</p>
-       <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"} %><br>
-       <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br>
-       <%=link_to "More Info",""%>
+      <p id="menuButton">Menu</p>
+      <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"} %><br>
+      <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br>
+      <%=link_to "Photos",""%><br>
+      <%=link_to "More Info",""%>
       <%end%>
-     </li>
+    </li>
     </ul>
   </div>
 
