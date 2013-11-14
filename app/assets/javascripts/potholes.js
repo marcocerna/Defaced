@@ -503,7 +503,7 @@ $(function(){
     }) // end of .done()
 
     // Step 5 (maybe): Reopen infobox (so it sizes correctly?)
-  })p
+  })
 
 
 })
