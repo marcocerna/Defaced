@@ -450,7 +450,6 @@ $(function(){
   //   event.preventDefault()
 
 
-<<<<<<< Updated upstream
   //   var $pothole_id = $('input[name="pothole_id"]').val()
   //   console.log("The pothole ID is: " + $pothole_id)
 
@@ -475,32 +474,7 @@ $(function(){
 
 
   // })
-=======
-    var $pothole_id = $('input[name="pothole_id"]').val()
-    console.log("The pothole ID is: " + $pothole_id)
 
-    var photo = {
-      photo: {
-        pothole_id: $pothole_id
-      }
-    }
-
-    $.post('/photos', photo).done(function(data) {
-      console.log(data)
-      // redirect to /photos
-
-      // ajax call to uploader
-      $.ajax(url: uploader_action).done({
-
-        grab $user_id, $key, $pothole_id
-
-        $.post(all that stuff)
-      })
-    })
-
-
-  })
->>>>>>> Stashed changes
 
 
 })
