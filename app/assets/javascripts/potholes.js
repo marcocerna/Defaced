@@ -85,7 +85,7 @@ $(function(){
   // Creates pothole marker on map (but doesn't touch the database)
   function createMarker(location, content, potholeID) {
 
-    debugger
+    // debugger
     // Step 1: Create the marker
 
     // (First, though, we use a special variable to make old ones non-draggable)
