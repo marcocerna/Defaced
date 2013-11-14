@@ -1,27 +1,28 @@
 $(document).ready(function(){
- 
-    //When mouse rolls over
-    $("li").mouseover(function(){
-        $(this).stop().animate({height:'150px'},{queue:false, duration:600, easing: 'easeOutBounce'})
+
+  var isClicked = false
+
+    //When clicked once opens div, clicked again closes the div
+    $('body').on('touchstart', 'li', function(event){
+      if(isClicked ==false){
+        $(this).stop().animate({height:'100px'},{easing: 'easeOutBounce'})
+        isClicked=true
+      }
+      else{
+        $(this).stop().animate({height:'31px'},{easing: 'easeOutBounce'})
+        isClicked = false
+      }
     });
- 
-    //When mouse is removed
-    $("li").mouseout(function(){
-        $(this).stop().animate({height:'50px'},{queue:false, duration:600, easing: 'easeOutBounce'})
+
+    $('body').on('click', 'li', function(event){
+      if(isClicked ==false){
+        $(this).stop().animate({height:'100px'},{easing: 'easeOutBounce'})
+        isClicked=true
+      }
+      else{
+        $(this).stop().animate({height:'31px'},{easing: 'easeOutBounce'})
+        isClicked = false
+      }
     });
- 
 });
 
-
-//     //When mouse rolls over
-//     $("li").bind('touchstart', function(){
-//         $(this).stop().animate({height:'150px'},{queue:false, duration:600, easing: 'easeOutBounce'})
-//     });
- 
-//     //When mouse is removed
-//     $("li").bind('touchend', function(){
-//         $(this).stop().animate({height:'50px'},{queue:false, duration:600, easing: 'easeOutBounce'})
-        
-//     });
- 
-// });
