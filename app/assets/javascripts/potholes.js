@@ -302,9 +302,9 @@ $(function(){
         "<div id='content'>",
         "<h1>" + item.name + "</h1>",
         "<div>" + item.description + "</div>",
-        "<button class='upvote vote' id='" + item.id + "'>Still broken!</button>",
-        "<button class='downvote vote' id='" + item.id + "'>Fixed!</button>",
-        "<div class='vote_counter' id='" + item.id + "'>Pothole sightings: " + item.vote_count + "</div>",
+        "<button class='upvote vote' id='" + item.id + "'>Upvote!</button>",
+        "<button class='downvote vote' id='" + item.id + "'>Downvote!</button>",
+        "<div class='vote_counter' id='" + item.id + "'>Vote Count: " + item.vote_count + "</div>",
         "<button class='deleteButton' id='" + item.id + "'>Delete!</button>",
         "<button class='showPhotosButton showHide' id='" + item.id + "'>Show Photos!</button>",
 
@@ -448,11 +448,11 @@ $(function(){
   $('body').on('click', '.showHide', function(event) {
     event.preventDefault();
 
-    infobox.close();
+    // infobox.close();
     $('.showPhotosButton[id="' + this.id + '"]').toggleClass('hidden'); // Do we even need to check ID? Test this
     $('.photosContent[id="' + this.id + '"]').toggleClass('hidden');
-    infobox.setContent("<div>I'm a div!</div>")                         // Needs to grab correct data w/o hidden class
-    infobox.open(map, currentMarker);
+    // infobox.setContent("<div>I'm a div!</div>")                         // Needs to grab correct data w/o hidden class
+    // infobox.open(map, currentMarker);
 
   })
 
