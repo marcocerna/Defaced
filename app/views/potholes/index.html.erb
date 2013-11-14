@@ -7,7 +7,7 @@
     </style>
   </head>
 <header id="panel">
-  <p>Pothole Patrol!</p>
+  <p>Pothole Patrol</p>
 </header>
   <div id = "loginDropDown">
     <ul>
@@ -17,7 +17,8 @@
       <%else%>
        <p id="loginButton">Login</p>
        <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"} %><br>
-       <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%>
+       <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br>
+       <%=link_to "More Info",""%>
       <%end%>
      </li>
     </ul>
