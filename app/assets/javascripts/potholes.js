@@ -158,6 +158,7 @@ $(function(){
       } else if (infobox.content === contentString) {
         infobox.close();
         isWindowOpen = false;
+        currentMarker = null;
       } else {
         infobox.close();
         infobox.setContent(contentString);
@@ -376,18 +377,8 @@ $(function(){
   $('body').on('click', '.showHide', function(event) {
     event.preventDefault();
 
-    // infobox.close();
-    $('.showPhotosButton[id="' + this.id + '"]').toggleClass('hidden'); // Do we even need to check ID? Test this
+    $('.showPhotosButton[id="' + this.id + '"]').toggleClass('hidden');      // Do we even need to check ID? Test this
     $('.photosContent[id="' + this.id + '"]').toggleClass('hidden');
-    // infobox.setContent("<div>I'm a div!</div>")                         // Needs to grab correct data w/o hidden class
-    // infobox.open(map, currentMarker);
-
-
-
-    // Search through database for pictures with pothole_id
-
-    // Append them to storePhotos div
-
 
 
 
@@ -402,90 +393,53 @@ $('body').on('click', '.gmnoprint', function(){
   $('#content').parent().parent().parent().css('border-radius','10px');
   }, 10);
 })
-/////////////////////////////////////////////////////////////////////////////////////
-
-
-  ////////////////////////////
-  // Add Photo (incomplete) //
-  ////////////////////////////
-
-
-  // $('body').on('click', '.addPhotosButton', function(event) {
-  //   event.preventDefault();
-
-  //   // Step 1: Grab attribute data
-  //   var $image_source = $('input[name="image_source"]').val()
-  //   var $pothole_id = $('input[name="pothole_id"]').val()
-  //   var $user_id = 1                                            // Placeholder; fix this
-
-  //   // Step 2: Set up params hash
-  //   var photo = {
-  //     photo: {
-  //       image_source: $image_source,
-  //       pothole_id: $pothole_id,
-  //       user_id: $user_id
-  //     }
-  //   }
-
-  //   // Step 3: Ajax call
-  //   $post('/photos', photo).done(function(data) {
-
-  //     alert("Yay, you posted a photo!");
-
-  //     // Step 4: Add picture to infoBox               // Only works for ONE photo; build a loop for this
-
-  //     // 4.1: Grab storePhotos div
-  //     var $photoDiv = $('.storePhotos')               // Test whether we need ID here too
-
-  //     // 4.2: Write html for photo
-  //     var $newPhoto = [
-  //       "<img src='" + data.remote_image_url + "'>"   // Check with Kristine whether this'll work
-  //     ]
-
-  //     // 4.3: Throw that photo into that div
-  //     $photoDiv.html($newPhoto)
-
-  //   }) // end of .done()
-
-  //   // Step 5 (maybe): Reopen infobox (so it sizes correctly?)
-  // })
-
 
 /////////////////////////////////////////////////////////////////////////////////////
 
 
   ////////////////////////////
-  // Add Photo (two pager)  //
+  // Show Photo (not done ) //
   ////////////////////////////
 
-  // $('body').on('click', '.addPhotosButton', function(event) {
-  //   event.preventDefault()
+
+  $('body').on('click', '.showPhotosButton', function(event) {
+    event.preventDefault()
+
+    // grab current pothole_id
+    var $photoPotholeID = this.id
+
+    // make an array in which to store photo remote urls
+    var $photoDisplayArray = []
+
+    // ajax to photos
+    $.getJSON('/all_photos.json', function(json) {
 
 
-  //   var $pothole_id = $('input[name="pothole_id"]').val()
-  //   console.log("The pothole ID is: " + $pothole_id)
+      // loop through data, grab URLs by pothole_id
+      for (i in json) {
+        if ( json[i]['pothole_id'] == parseInt($photoPotholeID) ) {
+          $photoDisplayArray.push(json[i]["remote_image_url"])
+        }
+      }
 
-  //   var photo = {
-  //     photo: {
-  //       pothole_id: $pothole_id
-  //     }
-  //   }
+      // close infobox, put data inside and reopen it
+      infobox.close()
+      infobox.setContent(
+        JST["templates/photos"]({
+          array: $photoDisplayArray
+        })
+      )
 
-  //   $.post('/photos', photo).done(function(data) {
-  //     console.log(data)
-  //     // redirect to /photos
-
-  //     // ajax call to uploader
-  //     $.ajax(url: uploader_action).done({
-
-  //       grab $user_id, $key, $pothole_id
-
-  //       $.post(all that stuff)
-  //     })
-  //   })
+      // bxSlider command
+      $(".bxslider").bxSlider({
+        adaptiveHeight: true,
+        mode: 'fade'
+      })
 
 
-  // })
+      infobox.open(map, currentMarker)
+    })
+  })
 
 
 
