@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+    </style>
+  </head>
+<header id="panel">
+  <p id ="title"><img id ="icon" src="/assets/171.png"> Pothole Patrol</p>
+</header>
+  <div id= "loginDropDown">
+    <ul id= 'menuItems'>
+    <li class="blueOne">
+      <%if current_user%>
+      <p id="menuButton">Menu<br></p>
+      <%=link_to "Sign Out", signout_path,{:class=>"linkText"}%><br>
+      <%=link_to "Photos","",{:class=>"linkText"}%><br>
+      <%=link_to "More Info","",{:class=>"linkText"}%>
+      <%else%>
+      <p id="menuButton">Menu</p>
+      <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%><br>
+      <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br>
+      <%=link_to "Photos","/some/place",{:class=>"linkText"}%><br>
+      <%=link_to "More Info","/some/place",{:class=>"linkText"}%>
+      <%end%>
+    </li>
+    </ul>
+  </div>
+
+
+
+<head>
+	<link rel="stylesheet" type="text/css" href="test2.css">
+</head>
+
+<div id="divAbout">
+  <ol id= "olAbout">
+    <li id="liAbout"><span id="spanAbout">1.</span><p id="pAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur. Fusce nec leo ut massa viverra venenatis. Nam accumsan libero a elit aliquet quis ullamcorper arcu tincidunt. Praesent purus turpis, consectetur quis congue vel, pulvinar at lorem. Vivamus varius condimentum dolor, quis ultricies ipsum porta quis. </p></li>
+    <li id="liAbout"><span id="spanAbout">2.</span><p id="pAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur.  </p></li>
+    <li id="liAbout"><span id="spanAbout">3.</span><p id="pAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur.  </p></li>
+    <li id="liAbout"><span id="spanAbout">3.</span><p id="pAbout">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur.  </p></li>
+  </ol> 
+</div>

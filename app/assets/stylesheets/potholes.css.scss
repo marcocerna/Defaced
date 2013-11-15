@@ -2,3 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#divAbout {
+  width: 500px;
+  margin: 10px
+}
+ 
+#olAbout {
+  color: #ccc;
+  list-style-type: none;
+}
+ 
+#liAbout {
+  position: relative;
+  font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+  margin-bottom: 20px;
+}
+ 
+#pAbout {
+  font: 12px/1.5 Helvetica, sans-serif;
+  padding-left: 60px;
+  color: #555;
+}
+ 
+#spanAbout {
+  position: absolute;
+}
