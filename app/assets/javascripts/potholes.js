@@ -165,7 +165,7 @@ $(function(){
         currentMarker = marker;
       }
     });
-  } // end of potHole()
+  } // end of createMarker()
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -189,13 +189,13 @@ $(function(){
     // There are four steps to this process
 
     // Step 1: Grab input values from form and shove them into jquery variables
-    // Refactoring: fix 'user_id'
     var $name = $('#name').val();
     var $description = $('#description').val();
     var $latitude = currentLat
     var $longitude = currentLng
     var $vote_count = 1
     var $user_id = gon.current_user.id
+
 
     // Step 2: Set up a 'pothole' hash with those values
     // We'll feed this into ajax call and it'll become params for 'create' action
@@ -285,7 +285,7 @@ $(function(){
       vote: {
         upvote: $upvote,
         pothole_id: $pothole_id,
-        user_id: 1
+        user_id: gon.current_user
       }
     }
 
