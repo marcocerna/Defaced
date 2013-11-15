@@ -5,7 +5,9 @@
 <button class='downvote vote' id='<%= id %>' style= 'background:#8e44ad; color:white; border: 0px; padding: 2px'>Downvote!</button>
 <div class='vote_counter' id='<%= id %>'>Vote Count: <%= vote_count %></div>
 <% if(gon.current_user){ %>
+  <% if(gon.current_user.id == user_id){%>
   <button class='deleteButton' id='<%= id %>' style= 'background:#8e44ad; color:white; border: 0px; padding: 2px'>Delete!</button>
+  <% } %>
 <% } %>
 <button class='showPhotosButton showHide' id='<%= id %>'>Show Photos!</button>
 

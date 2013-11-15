@@ -396,8 +396,8 @@ $(function(){
 
 $('body').on('click', '.gmnoprint', function(){
   setTimeout(function(){
-  $('#content').parent().parent().parent().css('border','2px solid red');
-  }, 20);
+  $('#content').parent().parent().parent().css('border','3px solid #8e44ad');
+  }, 10);
 })
 /////////////////////////////////////////////////////////////////////////////////////
 
