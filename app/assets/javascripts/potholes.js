@@ -385,7 +385,7 @@ $(function(){
   })
 
 
-// To change the popup box css properties:
+  // To change the popup box css properties:
 
 $('body').on('click', '.gmnoprint', function(){
   setTimeout(function(){
@@ -393,6 +393,7 @@ $('body').on('click', '.gmnoprint', function(){
   $('#content').parent().parent().parent().css('border-radius','20px');
   }, 20);
 })
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 
