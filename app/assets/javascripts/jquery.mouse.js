@@ -14,7 +14,7 @@ $(document).ready(function(){
       }
     });
 
-    $('body').on('click', 'li', function(event){
+    $('body').on('click', '.blueOne', function(event){
       if(isClicked ==false){
         $(this).stop().animate({height:'140px'},{easing: 'easeOutBounce'})
         isClicked=true

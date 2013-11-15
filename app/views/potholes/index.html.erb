@@ -16,7 +16,7 @@
       <p id="menuButton">Menu<br></p>
       <%=link_to "Sign Out", signout_path,{:class=>"linkText"}%><br>
       <%=link_to "Photos","",{:class=>"linkText"}%><br>
-      <%=link_to "More Info","",{:class=>"linkText"}%>
+      <%=link_to "More Info","/potholes/new",{:class=>"linkText"}%>
       <%else%>
       <p id="menuButton">Menu</p>
       <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%><br>
