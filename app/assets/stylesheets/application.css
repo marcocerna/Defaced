@@ -20,6 +20,10 @@
     padding-right: 10px;
 }
 
+ #title{
+    padding-right: 10px;
+ }
+
 #map-canvas {
     height: 100%;
     margin-top: 50px;
@@ -32,7 +36,7 @@
     z-index: 1;
     color: white;
     font-size: 20px;
-    background: #9b59b6  ;
+    background: #9b59b6 ;
     /*background-color: rgb(250,250,250); opacity: .9;*/
     margin-top: -50px;
     max-height: 51px;
@@ -43,7 +47,7 @@
     z-index: 50;
     margin-top: -50px;
     position: absolute;
-    float: left ;
+    float: left;
 }
 
 #menuButton{
@@ -53,7 +57,7 @@
 }
 
 .blueOne{
-    background-color: #9b59b6  ;
+    background-color: #9b59b6;
     height: 30px;
     padding: 5px;
     margin-right: auto;
@@ -61,7 +65,7 @@
     width:100px;
     height:40px;
     float:left;
-    color: #191919  ;
+    color: #191919;
     text-align:center;
     overflow:hidden;
 }
@@ -70,12 +74,12 @@
     color: white;
 }
 .hoverText{
-    color: #e67e22  ;
+    color: #e67e22;
 }
 
 body{
     font-family:"Lucida Grande", arial, sans-serif;
-    background: #F3F3F3  ;
+    background: #F3F3F3;
     height:100%;
     margin: 0;
     padding: 0;
