@@ -390,8 +390,8 @@ $(function(){
 $('body').on('click', '.gmnoprint', function(){
   setTimeout(function(){
   $('#content').parent().parent().parent().css('border','3px solid #34495e');
-  $('#content').parent().parent().parent().css('border-radius','10px');
-  }, 10);
+  $('#content').parent().parent().parent().css('border-radius','20px');
+  }, 20);
 })
 
 /////////////////////////////////////////////////////////////////////////////////////
