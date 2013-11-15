@@ -88,6 +88,9 @@ $(function(){
 
     // (First, though, we use a special variable to make old ones non-draggable)
     var drag = (content === undefined) ? true : false
+    var sprayCan = {
+      url: "/assets/sprayCan2.png",
+      scaledSize: new google.maps.Size(50,50)}
 
     // Now we actually do step 1
     var marker = new google.maps.Marker({
@@ -95,10 +98,7 @@ $(function(){
       map: map,
       draggable: drag,
       animation: google.maps.Animation.DROP,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 3
-      },
+      icon: sprayCan,
       pothole_id: potholeID
     });
 
