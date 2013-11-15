@@ -20,6 +20,10 @@
     padding-right: 10px;
 }
 
+ #title{
+    padding-right: 10px;
+ }
+
 #map-canvas {
     height: 100%;
     margin-top: 50px;
@@ -53,7 +57,7 @@
 }
 
 .blueOne{
-    background-color: #9b59b6  ;
+    background-color: #9b59b6;
     height: 30px;
     padding: 5px;
     margin-right: auto;
@@ -61,7 +65,7 @@
     width:100px;
     height:40px;
     float:left;
-    color: #191919  ;
+    color: #191919;
     text-align:center;
     overflow:hidden;
 }

@@ -6,7 +6,10 @@ $(function(){
   var currentLng;
   var infobox = new google.maps.InfoWindow({    // One infobox, only content changes
      content: "Hello!",
-     maxWidth: 700
+     maxWidth: 700,
+     boxStyle:{
+      border: "1px solid black"
+     }
   });
   var isWindowOpen = false;                     // Used so only one window opens at a time
   var newMarkerExists = false;                  // Used so only one marker creaed at a time
