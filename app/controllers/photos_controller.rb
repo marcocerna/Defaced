@@ -8,12 +8,13 @@ class PhotosController < ApplicationController
   def new
     @photo = Photo.new(key: params[:key])
     @photo[:pothole_id] = params[:pothole_id]
+    @photo[:user_id] = current_user.id
     # render :inline => pothole_id
   end
 
   def create
     @photo = Photo.create(params[:photo])
-    render json: @photo
+    # render json: @photo
     redirect_to root_path
   end
 
