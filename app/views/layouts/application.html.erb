@@ -10,6 +10,13 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=true"></script>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+
+    <!-- jQuery library (served from Google) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- bxSlider Javascript file -->
+    <script src="/assets/jquery.bxslider.min.js"></script>
+    <!-- bxSlider CSS file -->
+    <link href="/assets/jquery.bxslider.css" rel="stylesheet" />
   </head>
 <body>
   <%= yield %>
