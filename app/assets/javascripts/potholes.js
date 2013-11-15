@@ -6,7 +6,6 @@ $(function(){
   var currentLng;
   var infobox = new google.maps.InfoWindow({    // One infobox, only content changes
      content: "Hello!",
-     maxWidth: 700,
      boxStyle:{
       border: "1px solid black"
      }
