@@ -12,17 +12,32 @@
  *= require_tree .
  */
 
+
+
+
 #icon{
-    height: 25px;
+    height: 30px;
+    float: right;
+    padding-top: 15px;
+    padding-right: 20px;
+    }
+
+
+@media (max-width: 600px){
+#icon{
+    height: 30px;
+    float: right;
+    padding-top: 15px;
+    padding-right: 50px;
+    }
 }
 
 #title{
     padding-right: 10px;
+    padding-bottom: 10px;
+    float: right;
 }
 
- #title{
-    padding-right: 10px;
- }
 
 #map-canvas {
     height: 100%;
@@ -32,11 +47,10 @@
 #panel {
     position: absolute;
     width: 100%;
-    text-align: right;
     z-index: 1;
     color: white;
     font-size: 20px;
-    background: #9b59b6 ;
+    background: #34495e;
     /*background-color: rgb(250,250,250); opacity: .9;*/
     margin-top: -50px;
     max-height: 51px;
@@ -57,7 +71,7 @@
 }
 
 .blueOne{
-    background-color: #9b59b6;
+    background-color: #34495e;
     height: 30px;
     padding: 5px;
     margin-right: auto;
