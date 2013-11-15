@@ -1,22 +1,24 @@
 <div id='content'>
-<h1><%= name %></h1>
-<div><%= description %></div>
-<button class='upvote vote' id='<%= id %>'>Upvote!</button>
-<button class='downvote vote' id='<%= id %>'>Downvote!</button>
-<div class='vote_counter' id='<%= id %>'>Vote Count: <%= vote_count %></div>
-<button class='deleteButton' id='<%= id %>'>Delete!</button>
-<button class='showPhotosButton showHide' id='<%= id %>'>Show Photos!</button>
+  <h1><%= name %></h1>
+  <div><%= description %></div>
+  <button class='upvote vote' id='<%= id %>'>Upvote!</button>
+  <button class='downvote vote' id='<%= id %>'>Downvote!</button>
+  <div class='vote_counter' id='<%= id %>'>Vote Count: <%= vote_count %></div>
+  <% if(gon.current_user){ %>
+    <button class='deleteButton' id='<%= id %>'>Delete!</button>
+  <% } %>
+  <button class='showPhotosButton showHide' id='<%= id %>'>Show Photos!</button>
 
-<div class='photosContent hidden' id='<%= id %>'>
-  <button class='hidePhotosButton showHide' id='<%= id %>'>Hide Photos!</button>
-  <button class='addPhotosButton' id='<%= id %>'>Add Photos!</button>
-  <a href="http://www.w3schools.com">Visit W3Schools.com!</a>
-  <a style="color:black" href="/potholes/<%= id %>/photos">ADD SHIT</a>
+  <div class='photosContent hidden' id='<%= id %>'>
+    <button class='hidePhotosButton showHide' id='<%= id %>'>Hide Photos!</button>
+    <% if(gon.current_user){ %>
+      <a href="/potholes/<%= id %>/photos"><button class='addPhotosButton' id='<%= id %>'>Upload a Photo</button></a>
+    <% } %>
 
-  <form class='addPhotosForm'>
-    <input type='text' name='image_source' placeholder='Add image URL'>
-    <input type='hidden' name='pothole_id' value='<%= id %>'>
-    <input type='submit'>
-  </form>
-</div>
+  <!--   <form class='addPhotosForm'>
+      <input type='text' name='image_source' placeholder='Add image URL'>
+      <input type='hidden' name='pothole_id' value='<%= id %>'>
+      <input type='submit'>
+    </form> -->
+  </div>
 </div>

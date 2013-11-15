@@ -191,7 +191,7 @@ $(function(){
     var $latitude = currentLat
     var $longitude = currentLng
     var $vote_count = 1
-    var $user_id = 1
+    var $user_id = gon.current_user.id
 
     // Step 2: Set up a 'pothole' hash with those values
     // We'll feed this into ajax call and it'll become params for 'create' action
@@ -211,7 +211,6 @@ $(function(){
     // A 'post' call requires two arguments: a route and the data to be sent in as params
     // In this case, that's the 'vote' hash from step 2
     $.post("/potholes", pothole).done(function(data) {
-
       // Step 4: Stuff done after successful ajax call
       // In this case, we need to fill in infoBox with newly created data
 
@@ -380,6 +379,7 @@ $(function(){
     // infobox.open(map, currentMarker);
 
 
+
     // Search through database for pictures with pothole_id
 
     // Append them to storePhotos div
@@ -390,6 +390,13 @@ $(function(){
   })
 
 
+// To change the popup box css properties:
+
+$('body').on('click', '.gmnoprint', function(){
+  setTimeout(function(){
+  $('#content').parent().parent().parent().css('border','2px solid red');
+  }, 20);
+})
 /////////////////////////////////////////////////////////////////////////////////////
 
 
