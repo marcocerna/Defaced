@@ -1,4 +1,4 @@
-Upload a photo:
+You have uploaded a photo:
 
 <%= form_for @photo, :html => {:multipart => true} do |f| %>
 
@@ -7,10 +7,10 @@ Upload a photo:
   <%= f.hidden_field :key %>
   <p>File: <%= @photo.image_name %>
   </p>
-  <p>
+<!--   <p>
     <%= f.label :remote_image_url, "or image URL" %><br />
     <%= f.text_field :remote_image_url %>
-  </p>
-  <p><div class="photo_submit"><%= f.submit %></div></p>
+  </p> -->
+  <p><div class="photo_submit"><%= f.submit "confirm" %></div></p>
 <% end %>
 
