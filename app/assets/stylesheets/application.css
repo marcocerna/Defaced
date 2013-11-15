@@ -26,7 +26,6 @@
 }
 
 #panel {
-    font-family: 'Finger Paint', cursive;
     position: absolute;
     width: 100%;
     text-align: right;
@@ -41,7 +40,6 @@
 }
 
 #loginDropDown{
-    font-family: 'Finger Paint', cursive;
     z-index: 50;
     margin-top: -50px;
     position: absolute;
