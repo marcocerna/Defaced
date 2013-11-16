@@ -13,7 +13,7 @@ $(function(){
   var isWindowOpen = false;                     // Used so only one window opens at a time
   var newMarkerExists = false;                  // Used so only one marker creaed at a time
   var blueDot = "/assets/blueDot.png";
-  var currentMarker;                            // Maybe use this for photo sizing issue?
+  var currentMarker;                            // Used to make sure window resizing opens correct marker's infobox
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -394,7 +394,6 @@ $('body').on('click', '.gmnoprint', function(){
   }, 20);
 })
 
-
 /////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -427,13 +426,16 @@ $('body').on('click', '.gmnoprint', function(){
       infobox.close()
       infobox.setContent(
         JST["templates/photos"]({
-          array: $photoDisplayArray
+          array: $photoDisplayArray,
+          windowSize: {
+            height: $(window).height(),
+            width: $(window).width()
+          }
         })
       )
 
       infobox.open(map, currentMarker)
 
-      //debugger
       // bxSlider command
 
       $(".bxSlider").bxSlider({
@@ -441,8 +443,6 @@ $('body').on('click', '.gmnoprint', function(){
         mode: 'fade'
       })
 
-
-      //debugger
     })
   })
 
