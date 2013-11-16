@@ -2,30 +2,30 @@ $(document).ready(function(){
 
   var isClicked = false
 
-    //When clicked once opens div, clicked again closes the div
-    $('body').on('touchstart', '#menuButton', function(event){
-      if(isClicked ==false){
-          $('.blueOne').stop().animate({height:'210px'},{easing: 'easeOutBounce'})
-        isClicked=true
-      }
-      else{
-        $('.blueOne').stop().animate({height:'31px'},{easing: 'easeOutBounce'})
-        isClicked = false
-      }
-    });
+//When clicked once opens div, clicked again closes the div
+$('body').on('touchstart', '#menuButton', function(event){
+  if(isClicked ==false){
+      $('.blueOne').stop().animate({height:'180px'},{easing: 'easeOutBounce'})
+    isClicked=true
+  }
+  else{
+    $('.blueOne').stop().animate({height:'31px'},{easing: 'easeOutBounce'})
+    isClicked = false
+  }
+});
 
-    $('body').on('click', '.blueOne', function(event){
-      if(isClicked ==false){
-        $(this).stop().animate({height:'210px'},{easing: 'easeOutBounce'})
-        isClicked=true
-      }
-      else{
-        $(this).stop().animate({height:'31px'},{easing: 'easeOutBounce'})
-        isClicked = false
-      }
-    });
+$('body').on('click', '.blueOne', function(event){
+  if(isClicked ==false){
+    $(this).stop().animate({height:'180px'},{easing: 'easeOutBounce'})
+    isClicked=true
+  }
+  else{
+    $(this).stop().animate({height:'31px'},{easing: 'easeOutBounce'})
+    isClicked = false
+  }
+});
 
-    $('.linkText').hover(function(event){
-      $(this).toggleClass("hoverText")
-    })
+$('.linkText').hover(function(event){
+  $(this).toggleClass("hoverText")
+})
 });
