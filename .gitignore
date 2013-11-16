@@ -19,4 +19,5 @@
 /.env
 
 #ignore ds store files
-/.DS_Store
+app/.DS_Store
+app/models/.DS_Store
