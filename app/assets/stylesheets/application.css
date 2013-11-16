@@ -80,7 +80,6 @@
     margin-left: auto;
     width:100px;
     height:40px;
-    float:left;
     color: #191919;
     text-align:center;
     overflow:hidden;
@@ -92,10 +91,10 @@
     color: white;
 }
 
-a .linkText {
+li .linkText {
 
     display: block;
-    padding: 3px 20px;
+    padding: 3px 0 3px 0;
     clear: both;
 }
 
