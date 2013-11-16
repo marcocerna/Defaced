@@ -15,15 +15,15 @@
     <ul id= 'menuItems'>
       <div class="blueOne">
       <%if current_user%>
-      <li><p id="menuButton">Menu<br></p></li>
-      <li><%=link_to "Sign Out", signout_path,{:class=>"linkText"}%><br></li>
-      <li><%=link_to "Photos","",{:class=>"linkText"}%><br></li>
+      <li><p id="menuButton">Menu</p></li>
+      <li><%=link_to "Sign Out", signout_path,{:class=>"linkText"}%></li>
+      <li><%=link_to "Photos","",{:class=>"linkText"}%></li>
       <li><%=link_to "More Info","/potholes/new",{:class=>"linkText"}%></li>
       <%else%>
       <li><p id="menuButton">Menu</p></li>
-      <li><%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%><br></li>
-      <li><%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br></li>
-      <li><%=link_to "Photos","/some/place",{:class=>"linkText"}%><br></li>
+      <li><%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%></li>
+      <li><%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%></li>
+      <li><%=link_to "Photos","/some/place",{:class=>"linkText"}%></li>
       <li><%=link_to "More Info","/potholes/new",{:class=>"linkText"}%></li>
       <%end%>
     </div>
