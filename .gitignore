@@ -17,3 +17,6 @@
 
 # Ignore all .env files
 /.env
+
+#ignore ds store files
+/.DS_Store
