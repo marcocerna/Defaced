@@ -431,14 +431,18 @@ $('body').on('click', '.gmnoprint', function(){
         })
       )
 
+      infobox.open(map, currentMarker)
+
+      //debugger
       // bxSlider command
-      $(".bxslider").bxSlider({
+
+      $(".bxSlider").bxSlider({
         adaptiveHeight: true,
         mode: 'fade'
       })
 
 
-      infobox.open(map, currentMarker)
+      //debugger
     })
   })
 

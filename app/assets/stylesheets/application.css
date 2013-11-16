@@ -23,16 +23,16 @@
     }
 
 
-@media (max-width: 600px){
-#icon{
-    height: 35px;
-    float: right;
-    padding-top: 15px;
-    padding-right: 50px;
+@media (max-width: 600px) {
+    #icon {
+        height: 35px;
+        float: right;
+        padding-top: 15px;
+        padding-right: 50px;
     }
 }
 
-#title{
+#title {
     padding-right: 10px;
     padding-bottom: 10px;
     float: right;
