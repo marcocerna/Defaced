@@ -14,4 +14,6 @@
 /log/*.log
 /tmp
 /dump.rdb
+
+# Ignore all .env files
 /.env
