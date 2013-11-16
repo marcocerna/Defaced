@@ -1,4 +1,8 @@
-You have uploaded a photo:
+<div id="photo_confirm" style="text-align: center; background-color: #34495e; color: white; height: 100%">
+
+<img src="/assets/happyface3.png" style="max-width: 30%">
+
+<h1>You have uploaded a photo!</h1>
 
 <%= form_for @photo, :html => {:multipart => true} do |f| %>
 
@@ -11,6 +15,7 @@ You have uploaded a photo:
     <%= f.label :remote_image_url, "or image URL" %><br />
     <%= f.text_field :remote_image_url %>
   </p> -->
-  <p><div class="photo_submit"><%= f.submit "confirm" %></div></p>
+  <p><div class="photo_submit"><%= f.submit "confirm", value: "Back to Defaced", style: "font-size: 20px; background-color: #2d8bca; color: white; border-radius: 5px; border: 0px; padding: 10px" %></div></p>
 <% end %>
 
+</div>

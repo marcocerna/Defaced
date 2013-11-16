@@ -1,8 +1,8 @@
-<div id="infoWindow" style="width: 600px; height: 600px">
+<div id="infoWindow" style="min-width: <%= windowSize.width * .8 %>px; height: <%= windowSize.height * .8 %>px">
 
 <ul class='bxSlider'>
   <% for (i in array) { %>
-    <li><img style="max-width: 500px; max-height: 500px" src=<%= array[i] %> ></li>
+    <li style="max-width: <%= windowSize.width * .7 %>px"><img style="max-width: <%= windowSize.width * .6 %>px; max-height: <% windowSize.height * .6 %>px" src=<%= array[i] %> ></li>
   <% } %>
 </ul>
 
