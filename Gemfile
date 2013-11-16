@@ -22,8 +22,8 @@ gem 'carrierwave'  #file uploader
 gem 'rmagick'      #for carrierwave
 gem 'fog'          #ruby cloud service library(cloud resources)
 gem 'unf'
-gem 'carrierwave_direct'
 gem 'gon'
+gem 'unicorn-rails'
 
 group :development, :test do
   gem 'pry-rails'
