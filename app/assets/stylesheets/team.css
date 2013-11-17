@@ -2,6 +2,7 @@
   width: 960px;
   height: 640px;
   overflow: hidden;
+  padding-top: 80px;
   margin: 0 auto;
 }
 
@@ -46,6 +47,6 @@
 }
 
 .member .name h3 {
-  background: rgba(241, 196, 15,1.0);
+  background: #F58706;
   text-align: center;
 }
