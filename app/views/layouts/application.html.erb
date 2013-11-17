@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <title>Defaced</title>
-    <%= include_gon %>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.js" type="text/javascript"></script>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=true"></script>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
+<head>
+  <!-- for google maps -->
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <title>Defaced</title>
+  <%= include_gon %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.js" type="text/javascript"></script>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=true"></script>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 
-  </head>
+  <!-- for panel? -->
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <style type="text/css">
+  html { height: 100% }
+  </style>
+</head>
+
+
+<header id="panel">  
+  <p id ="title"><%=link_to "DEFACED", root_path%></p>
+  <div class ="icon" >  <img id ="icon" src="/assets/happyface3.png"></div>
+
+  <div id = "loginDropDown">
+    <ul id= 'menuItems'>
+      <div class="blueOne">
+        <%if current_user%>
+        <li><p id="menuButton">Menu</p></li>
+        <li><%=link_to "Sign Out", signout_path,{:class=>"linkText"}%></li>
+        <li><%=link_to "Photos","",{:class=>"linkText"}%></li>
+        <li><%=link_to "More Info","/potholes/new",{:class=>"linkText"}%></li>
+        <%else%>
+        <li><p id="menuButton">Menu</p></li>
+        <li><%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%></li>
+        <li><%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%></li>
+        <li><%=link_to "Photos","/some/place",{:class=>"linkText"}%></li>
+        <li><%=link_to "More Info","/potholes/new",{:class=>"linkText"}%></li>
+        <%end%>
+      </div>
+    </ul>
+  </div>
+</header>
+
+
+
+
 <body>
   <%= yield %>
 </body>

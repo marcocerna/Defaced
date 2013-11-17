@@ -1,80 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-    </style>
-  </head>
 
-  <body>
-
-<header style="margin-top: 0px" id="panel">
-  <p id ="title"><img id ="icon" style="margin-top: -20px" src="/assets/happyface1.png"> Pothole Patrol</p>
-</header>
+<div id="buffer"></div>
 
 
-  <div id= "loginDropDown" style="margin-top: 0px">
-    <ul id= 'menuItems'>
-    <li class="blueOne">
-      <%if current_user%>
-      <p id="menuButton">Menu<br></p>
-      <%=link_to "Sign Out", signout_path,{:class=>"linkText"}%><br>
-      <%=link_to "Photos","",{:class=>"linkText"}%><br>
-      <%=link_to "More Info","/potholes/new",{:class=>"linkText"}%>
-      <%else%>
-      <p id="menuButton">Menu</p>
-      <%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%><br>
-      <%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%><br>
-      <%=link_to "Photos","/some/place",{:class=>"linkText"}%><br>
-      <%=link_to "More Info","/potholes/new",{:class=>"linkText"}%>
-      <%end%>
-    </li>
-    </ul>
-  </div>
-
-<div id="buffer"><br><br><br><br>
-
-<div id="divAbout" style="margin-top: 0px">
-  <h1 id="h1About">How to use Defaced</h1>
-  <ol id= "olAbout">
-    <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">1. See some awesome street art? Open our app, go to your location </text></li>
-    <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">2. Give it a name and description </text></li>
-    <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">3. Here's where the fun begins: Take a pic and upload it for the world to see. </text></li>
-    <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">4. See some awesome street art? Open our app, go to your location </text></li>
+  <div id="divAbout">
+    <h1 id="h1About">How to use Defaced</h1>
+    <ol id= "olAbout">
+      <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">1. See some awesome street art? Open our app, go to your location </text></li>
+      <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">2. Give it a name and description </text></li>
+      <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">3. Here's where the fun begins: Take a pic and upload it for the world to see. </text></li>
+      <li id="liAbout"><span id="spanAbout"></span><text id="textAbout">4. See some awesome street art? Open our app, go to your location </text></li>
       <div class="team-container">
 
 
 
 
-    <div class="member">
-      <div class="member-image"><img alt="tejas" src="/assets/BW1half.jpg"/></div>
-      <div class="name"><a href="mailto:xyz"><h3>Tejas</h3></a></div>
-    </div>
+        <div class="member">
+          <div class="member-image"><img alt="tejas" src="/assets/BW1half.jpg"/></div>
+          <div class="name"><a href="mailto:xyz"><h3>Tejas</h3></a></div>
+        </div>
 
-    <div class="member">
-      <div class="member-image"><img alt="marco" src="/assets/BW2half.jpg" /></div>
-      <div class="name"><a href="mailto:xyz"><h3>Marco</h3></a></div>
-    </div>
+        <div class="member">
+          <div class="member-image"><img alt="marco" src="/assets/BW2half.jpg" /></div>
+          <div class="name"><a href="mailto:xyz"><h3>Marco</h3></a></div>
+        </div>
 
-    <div class="member">
-      <div class="member-image"><img alt="bryan" src="/assets/BW3half.jpg" /></div>
-      <div class="name"><a href="mailto:xyz"><h3>Bryan</h3></a></div>
-    </div>
+        <div class="member">
+          <div class="member-image"><img alt="bryan" src="/assets/BW3half.jpg" /></div>
+          <div class="name"><a href="mailto:xyz"><h3>Bryan</h3></a></div>
+        </div>
 
-     <div class="member">
-      <div class="member-image"><img alt="kristine" src="/assets/BW4half.jpg" /></div>
-      <div class="name"><a href="mailto:xyz"><h3>Kristine</h3></a></div>
-    </div>
-    <!-- <div>
-    <li id="liAbout"><span id="spanAbout">2.</span><p id="pAbout">Give it a name and description </p></li>
-    </div>
-    <div>
-    <li id="liAbout"><span id="spanAbout">3.</span><p id="pAbout">Here's where the fun begins: Take a pic and upload it for the world to see. </p></li>
-    </div>
-    <div>
-    <li id="liAbout"><span id="spanAbout">4.</span><p id="pAbout"></p></li>
-    </div> -->
-  </ol> 
+        <div class="member">
+          <div class="member-image"><img alt="kristine" src="/assets/BW4half.jpg" /></div>
+          <div class="name"><a href="mailto:xyz"><h3>Kristine</h3></a></div>
+        </div>
+        <div>
+          <li id="liAbout"><span id="spanAbout">2.</span><p id="pAbout">Give it a name and description </p></li>
+        </div>
+        <div>
+          <li id="liAbout"><span id="spanAbout">3.</span><p id="pAbout">Here's where the fun begins: Take a pic and upload it for the world to see. </p></li>
+        </div>
+        <div>
+          <li id="liAbout"><span id="spanAbout">4.</span><p id="pAbout"></p></li>
+        </div>
+      </div>
+    </ol> 
+  </div>
 </div>
-  </body>
