@@ -6,6 +6,8 @@ PotholePatrol::Application.routes.draw do
   match "/signout" => "sessions#destroy", :as => :signout
 
   get   '/all_photos', to: 'photos#all_photos'
+  get   '/potholes/about', to: 'potholes#about'
+  get   '/potholes/team', to: 'potholes#team'
   resources :potholes do
     resources :photos
   end

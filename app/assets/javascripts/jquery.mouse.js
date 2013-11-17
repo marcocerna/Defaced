@@ -5,7 +5,7 @@ $(document).ready(function(){
 //When clicked once opens div, clicked again closes the div
 $('body').on('touchstart', '#menuButton', function(event){
   if(isClicked ==false){
-      $('.blueOne').stop().animate({height:'180px'},{easing: 'easeOutBounce'})
+      $('.blueOne').stop().animate({height:'235px'},{easing: 'easeOutBounce'})
     isClicked=true
   }
   else{
@@ -16,11 +16,11 @@ $('body').on('touchstart', '#menuButton', function(event){
 
 $('body').on('click', '.blueOne', function(event){
   if(isClicked ==false){
-    $(this).stop().animate({height:'180px'},{easing: 'easeOutBounce'})
+    $(this).stop().animate({height:'235px'},{easing: 'easeOutBounce'})
     isClicked=true
   }
   else{
-    $(this).stop().animate({height:'31px'},{easing: 'easeOutBounce'})
+    $(this).stop().animate({height:'40px'},{easing: 'easeOutBounce'})
     isClicked = false
   }
 });

@@ -29,16 +29,20 @@
     <ul id= 'menuItems'>
       <div class="blueOne">
         <%if current_user%>
-        <li><p id="menuButton">Menu</p></li>
-        <li><%=link_to "Sign Out", signout_path,{:class=>"linkText"}%></li>
-        <li><%=link_to "Photos","",{:class=>"linkText"}%></li>
-        <li><%=link_to "More Info","/potholes/new",{:class=>"linkText"}%></li>
+          <li><div id="menuButton">Menu</div></li>
+          <li><%=link_to "Sign Out", signout_path,{:class=>"linkText"}%></li>
+          <li><%=link_to "More Info","/potholes/about",{:class=>"linkText"}%></li>
+          <li><%=link_to "Gallery","",{:class=>"linkText"}%></li>
+          <li><%=link_to "Team","/potholes/team",{:class=>"linkText"}%></li>
+          <li><%=link_to "Home", root_path,{:class=>"linkText"}%></li>
         <%else%>
-        <li><p id="menuButton">Menu</p></li>
-        <li><%=link_to "Twitter", "/auth/twitter",{:class=>"linkText"}%></li>
-        <li><%=link_to "Facebook", "/auth/facebook",{:class=>"linkText"}%></li>
-        <li><%=link_to "Photos","/some/place",{:class=>"linkText"}%></li>
-        <li><%=link_to "More Info","/potholes/new",{:class=>"linkText"}%></li>
+          <li><div id="menuButton">Menu</div></li>
+          <li><%=link_to "Login w/ #{image_tag 'twitter_icon.png', :size => '16x16'}".html_safe, "/auth/twitter",{:class=>"linkText"}%></li>
+          <li><%=link_to "Login w/ #{image_tag 'Facebook-Icon.png', :size => '16x16'}".html_safe, "/auth/facebook",{:class=>"linkText"}%></li>
+          <li><%=link_to "More Info","/potholes/about",{:class=>"linkText"}%></li>
+          <li><%=link_to "Gallery","",{:class=>"linkText"}%></li>
+          <li><%=link_to "Team","/potholes/team",{:class=>"linkText"}%></li>
+          <li><%=link_to "Home", root_path,{:class=>"linkText"}%></li>
         <%end%>
       </div>
     </ul>
@@ -47,4 +51,7 @@
 <body>
   <%= yield %>
 </body>
+<footer class="footer">
+  <p> All rights Reserved &copy 2013 </p>
+</footer>
 </html>
