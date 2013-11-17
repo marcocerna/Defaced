@@ -1,0 +1,13 @@
+<div id="allPhotosGallery">
+
+<h1 style="margin-top: 100px; color: white">Defaced Gallery</h1>
+
+<ul class="bxSlider">
+<% @photos.each do |photo| %>
+
+  <li><img style="list-style-type: none" src="<%= photo.remote_image_url %>"></li>
+
+<% end %>
+</ul>
+
+</div>

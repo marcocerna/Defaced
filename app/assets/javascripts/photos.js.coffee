@@ -38,6 +38,12 @@ $ ->
     , 1000)
 
 
+$(document).ready ->
+  $(".bxSlider").bxSlider({
+    adaptiveHeight: true,
+    mode: 'fade'
+    })
+
 
 
 
