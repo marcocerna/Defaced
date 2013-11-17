@@ -1,3 +1,7 @@
+button, #menuButton {
+    cursor: pointer;
+}
+
 @media (min-width: 501px) {
 
     #newTag {
