@@ -49,19 +49,22 @@
     width: 100%;
     z-index: 1;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     background: #34495e;
     /*background-color: rgb(250,250,250); opacity: .9;*/
-    margin-top: -50px;
+    top: 0px;
     padding-bottom: 10px;
     max-height: 51px;
+    clear: both;
 
+}
+
+#panel #title{
+    font-size: 20px;
 }
 
 #loginDropDown{
     z-index: 50;
-    margin-top: -50px;
-    position: absolute;
     float: left;
 }
 
@@ -110,6 +113,8 @@ body{
     margin: 0;
     padding: 0;
 }
+
+
 
 #menuItems{
     margin:0;

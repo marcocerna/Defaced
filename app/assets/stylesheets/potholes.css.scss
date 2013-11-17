@@ -4,14 +4,24 @@
 
 #divAbout {
   width: 500px;
-  margin: 10px
+  margin: 10px;
 }
- 
+
+#h1About{
+
+}
+
 #olAbout {
   color: #ccc;
   list-style-type: none;
 }
  
+#buffer{
+  margin: 10px;
+  padding: 38px;
+  box-sizing: border-box;
+}
+
 #liAbout {
   position: relative;
   font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
