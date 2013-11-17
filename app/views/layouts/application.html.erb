@@ -51,11 +51,14 @@
       </div>
     </ul>
   </div>
+    <%if current_user%>
+    <div id="signed_in">Signed in as <%=current_user.name %></div>
+  <% end %>
 </header>
 <body>
   <%= yield %>
 </body>
-<footer class="footer">
-  <p> All rights Reserved &copy 2013 </p>
-</footer>
+<div class="footer">
+  <p> All rights reserved &copy 2013 </p>
+</div>
 </html>
