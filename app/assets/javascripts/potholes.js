@@ -30,7 +30,7 @@ $(function(){
     // Step 1: Set up variable with custom map options
     var mapOptions = {
         // Refactoring: If geolocation, center there. Else, SF
-        center: new google.maps.LatLng(37.7833, -122.4167),         // Set default center to SF
+        // center: new google.maps.LatLng(37.7833, -122.4167),       // Set default center to SF
         zoom: 13,                                                   // Set default zoom to show entire city
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDoubleClickZoom: true,                               // Disable double click zoom
