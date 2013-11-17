@@ -3,6 +3,7 @@
 <head>
   <!-- for google maps -->
   <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <link rel="apple-touch-icon" href="/assets/happyface3.png">
   <title>Defaced</title>
   <%= include_gon %>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -20,7 +21,7 @@
 </head>
 
 
-<header id="panel">  
+<header id="panel">
   <p id ="title"><%=link_to "DEFACED", root_path%></p>
   <div class ="icon" >  <img id ="icon" src="/assets/happyface3.png"></div>
 
@@ -43,10 +44,6 @@
     </ul>
   </div>
 </header>
-
-
-
-
 <body>
   <%= yield %>
 </body>
