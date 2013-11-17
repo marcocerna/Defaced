@@ -1,3 +1,15 @@
+#allPhotosGallery * {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#content {
+    color: #34495e;
+    width: 250px;
+    text-align: center;
+}
+
 .vote {
     max-width: 70px;
     /*background: white;*/
@@ -22,8 +34,13 @@
         border-radius: 5px;
         margin: 5px;
     }
+
     h1 {
         font-size: 30px;
+    }
+
+    #content {
+        width: 200px;
     }
 }
 
