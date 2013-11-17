@@ -1,16 +1,7 @@
-<!-- <div class="clear"></div> -->
-<body style="height: 100%; color: #34495e">
-<div id="photo_confirm" style="text-align: center; background-color: #34495e; color: white; height: 100%">
-
-<!-- <img src="/assets/happyface1.png" style="max-width: 30%"> -->
-
-<div id="photo_form" style="text-align: center; margin-top: 10%">
-<h1>Upload a new Photo</h1>
+<div id="photo_form" style="text-align: center; background-color: #34495e; color: white; margin-top: 55px; height: 85%">
+<h1 style="padding-top: 100px">Upload a new Photo</h1>
 <%= direct_upload_form_for @uploader do |f| %>
   <p style="border: 2px solid white; width: 20%; margin-left: auto; margin-right: auto; padding: 20px"><%= f.file_field :image_source, multiple: true, name: "photo[image_source]" %></p>
   <p><%= f.submit "Upload Image", style: "font-size: 20px; background-color: #2d8bca; color: white; border-radius: 5px; border: 0px; padding: 10px" %></p>
 <% end %>
 </div>
-
-</div>
-</body>
