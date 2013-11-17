@@ -13,6 +13,52 @@
  */
 
 
+.vote {
+    max-width: 70px;
+    /*background: white;*/
+    border: 0px;
+}
+
+.arrow {
+    max-width: 40px;
+}
+
+.infoboxButton {
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+@media (min-width: 500px) {
+    .infoboxButton {
+        font-size: 20px;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+}
+
+#infoWindow {
+    height: 400px;
+    width: 600px;
+}
+
+@media (max-width: 500px) {
+    #infoWindow {
+        height: 400px;
+        width: 200px;
+    }
+}
+
+
+.bx-viewport {
+    max-width: 600px;
+}
+
 
 #icon{
     height: 30px;
