@@ -44,6 +44,21 @@
   margin-bottom: 20px;  
 }
 
+@media (max-width: 480px) {
+  #h3About {
+    margin: 0 15px 0 15px;
+    font-size: 12px;
+    width: 300px;
+  }
+  #liAbout {
+    margin: 0 15px 0 15px;
+    font-size: 12px;
+    width: 300px;
+  }
+  #divAbout {
+    width: 300px;
+  }
+}
 #pAbout {
   font: 12px/1.5 Helvetica, sans-serif;
   padding-left: 60px;
