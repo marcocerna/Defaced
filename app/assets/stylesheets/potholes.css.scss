@@ -12,7 +12,7 @@
 
 #divAbout {
   width: 500px;
-  margin: 10px;
+  margin: 10px auto 10px 0;
 }
 
 #h1About{
@@ -42,12 +42,18 @@
 #h3About {
   position: relative;
   font: bold  20px Helvetica, Verdana, sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 480px) {
+
+  .about-container {
+    margin: 20px auto;
+  }
+
   #h3About {
     /*margin: 0 15px 0 15px;*/
+    padding-left: 20px;
     font-size: 12px;
     width: 280px;
   }
@@ -58,6 +64,9 @@
   }
   #divAbout {
     width: 280px;
+  }
+  #olAbout {
+    padding-left: 25px;
   }
 }
 #pAbout {
