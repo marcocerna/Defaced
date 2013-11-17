@@ -32,7 +32,7 @@
           <li><div id="menuButton">Menu</div></li>
           <li><%=link_to "Sign Out", signout_path,{:class=>"linkText"}%></li>
           <li><%=link_to "More Info","/potholes/about",{:class=>"linkText"}%></li>
-          <li><%=link_to "Gallery","",{:class=>"linkText"}%></li>
+          <li><%=link_to "Gallery","/all_photos",{:class=>"linkText"}%></li>
           <li><%=link_to "Team","/potholes/team",{:class=>"linkText"}%></li>
           <li><%=link_to "Home", root_path,{:class=>"linkText"}%></li>
         <%else%>
@@ -40,7 +40,7 @@
           <li><%=link_to "Login w/ #{image_tag 'twitter_icon.png', :size => '16x16'}".html_safe, "/auth/twitter",{:class=>"linkText"}%></li>
           <li><%=link_to "Login w/ #{image_tag 'Facebook-Icon.png', :size => '16x16'}".html_safe, "/auth/facebook",{:class=>"linkText"}%></li>
           <li><%=link_to "More Info","/potholes/about",{:class=>"linkText"}%></li>
-          <li><%=link_to "Gallery","",{:class=>"linkText"}%></li>
+          <li><%=link_to "Gallery","/all_photos",{:class=>"linkText"}%></li>
           <li><%=link_to "Team","/potholes/team",{:class=>"linkText"}%></li>
           <li><%=link_to "Home", root_path,{:class=>"linkText"}%></li>
         <%end%>
