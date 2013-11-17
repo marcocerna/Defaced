@@ -21,3 +21,5 @@
 #ignore ds store files
 app/.DS_Store
 app/models/.DS_Store
+
+.DS_Store
