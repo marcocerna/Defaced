@@ -11,5 +11,5 @@ PotholePatrol::Application.routes.draw do
   resources :potholes do
     resources :photos
   end
-  resources :photos, :votes
+  resources :photos, :votes, :users
 end
