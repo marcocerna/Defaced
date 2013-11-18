@@ -11,16 +11,16 @@
 <button class='downvote vote infoboxButton' id='<%= id %>' style= 'background: white; color:white; border: 0px'><img class="arrow" src="/assets/down_arrow.png"></button>
 
 
-
-<% if(gon.current_user && gon.current_user.id== id){ %>
+<% if(gon.current_user && gon.current_user.id === user_id){ %>
   <!-- Delete tag button -->
   <p><button class='deleteButton infoboxButton' id='<%= id %>' style= 'background:#34495e; color:white; border: 0px'>Remove This Tag</button></p>
-  <!-- Upload photo button -->
 
 <% } %>
+
 <% if(gon.current_user){ %>
+<!-- Upload photo button -->
   <a href="/potholes/<%= id %>/photos"><button class='addPhotosButton infoboxButton' id='<%= id %>' style= 'background:#34495e; color:white; border: 0px'>Upload a Photo</button></a>
-<% } %>
+  <% } %>
 
 
 
