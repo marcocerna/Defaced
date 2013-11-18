@@ -65,6 +65,7 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
+
     if(gon.current_user){
       google.maps.event.addListener(map,'dblclick',function(event){
         if (newMarkerExists == false) {
@@ -198,6 +199,7 @@ $(function(){
     var $user_id = gon.current_user.id
 
 
+
     // Step 2: Set up a 'pothole' hash with those values
     // We'll feed this into ajax call and it'll become params for 'create' action
     var pothole = {
@@ -286,7 +288,7 @@ $(function(){
       vote: {
         upvote: $upvote,
         pothole_id: $pothole_id,
-        user_id: gon.current_user
+        user_id: gon.current_user.id
       }
     }
 
