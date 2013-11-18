@@ -1,0 +1,24 @@
+<div style="text-align: center">
+
+<h1 style="margin-top: 80px">Profile for <%= @user.name %></h1>
+<br><br>
+<h2><%= @user.name %>'s Tags</h2>
+<% @potholes.each do |tag| %>
+  <% if tag.user_id == @user.id %>
+    <h3><%= tag.name %></h3>
+    <p><%= tag.description %></p><br><br>
+  <% end %>
+<% end %>
+
+<br><br>
+<h2><%= @user.name %>'s Photos</h2>
+
+
+<% @photos.each do |photo| %>
+  <% if photo.user_id == @user.id %>
+    <p><img style="max-width: 400px; margin: 10px" src="<%= photo.remote_image_url %>"></p>
+  <% end %>
+<% end %>
+
+
+</div>
