@@ -53,8 +53,8 @@
 }
 
 /*mobil media query*/
-@media only screen and (max-device-width: 500px) {
-    .team-container {
+@media only screen and (max-width: 500px) {
+  .team-container {
     width: 480px;
     height: 320px;
     overflow: hidden;
