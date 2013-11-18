@@ -30,7 +30,7 @@ $(function(){
     // Step 1: Set up variable with custom map options
     var mapOptions = {
         // Refactoring: If geolocation, center there. Else, SF
-        // center: new google.maps.LatLng(37.7833, -122.4167),       // Set default center to SF
+        center: new google.maps.LatLng(37.7833, -122.4167),       // Set default center to SF
         zoom: 13,                                                   // Set default zoom to show entire city
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDoubleClickZoom: true,                               // Disable double click zoom
@@ -65,6 +65,7 @@ $(function(){
 
     // Step 4: Allow double click to create (only one) new marker
     // This executes the createMarker function (defined below)
+
     if(gon.current_user){
       google.maps.event.addListener(map,'dblclick',function(event){
         if (newMarkerExists == false) {
@@ -198,6 +199,7 @@ $(function(){
     var $user_id = gon.current_user.id
 
 
+
     // Step 2: Set up a 'pothole' hash with those values
     // We'll feed this into ajax call and it'll become params for 'create' action
     var pothole = {
@@ -286,7 +288,7 @@ $(function(){
       vote: {
         upvote: $upvote,
         pothole_id: $pothole_id,
-        user_id: gon.current_user
+        user_id: gon.current_user.id
       }
     }
 
