@@ -3,16 +3,16 @@ $(document).ready(function(){
   var isClicked = false
 
 //When clicked once opens div, clicked again closes the div
-$('body').on('touchstart', '#menuButton', function(event){
-  if(isClicked ==false){
-      $('.blueOne').stop().animate({height:'235px'},{easing: 'easeOutBounce'})
-    isClicked=true
-  }
-  else{
-    $('.blueOne').stop().animate({height:'31px'},{easing: 'easeOutBounce'})
-    isClicked = false
-  }
-});
+// $('body').on('touchstart', '#menuButton', function(event){
+//   if(isClicked ==false){
+//       $('.blueOne').stop().animate({height:'235px'},{easing: 'easeOutBounce'})
+//     isClicked=true
+//   }
+//   else{
+//     $('.blueOne').stop().animate({height:'31px'},{easing: 'easeOutBounce'})
+//     isClicked = false
+//   }
+// });
 
 $('body').on('click', '.blueOne', function(event){
   if(isClicked ==false){
