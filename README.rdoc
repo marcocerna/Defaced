@@ -2,12 +2,11 @@
 
 Defaced gives users an easy platform to upload the incredible art they encounter on the streets.
 
-1. You must be logged in to submit a new post.
-2. To create a new post, first double click on the map.
-3. Enter "Title" and "Description" in the info box, then click "Submit."
-4. In the new dialog box, you have the option of clicking up/down arrow to upvote or downvote.
-5. To submit a photo of the street art, click "Upload a Photo."
+1. To create a new post login and double click on the map.
+2. Enter "Title" and "Description" in the info box, then click "Submit."
+3. In the new dialog box, you have the option of clicking up/down arrow to upvote or downvote.
+4. To submit a photo of the street art, click "Upload a Photo."
 
 
-The Defaced team is based in San Francisco, home to some of the best street art in the world.
+The Defaced team is based in San Francisco, home to some of the best street art in the world. 
 
